@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.0.1](https://github.com/jackdbd/content-security-policy/compare/v1.0.0...v1.0.1) (2023-03-05)
+
+
+### Bug Fixes
+
+* bump version ([2cc0a83](https://github.com/jackdbd/content-security-policy/commit/2cc0a831a27f8152a21a9d3409e954e0477bb2b7))
+
 ## 1.0.0 (2023-03-05)
 
 
