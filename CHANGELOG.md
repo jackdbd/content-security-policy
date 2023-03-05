@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.1.0](https://github.com/jackdbd/content-security-policy/compare/v1.0.1...v1.1.0) (2023-03-05)
+
+
+### Features
+
+* add script to show how to use the library ([ad2ebea](https://github.com/jackdbd/content-security-policy/commit/ad2ebea41c43b4ca31132daa84e67eeeb1c9b2fb))
+
 ## [1.1.0-canary.2](https://github.com/jackdbd/content-security-policy/compare/v1.1.0-canary.1...v1.1.0-canary.2) (2023-03-05)
 
 ## [1.1.0-canary.1](https://github.com/jackdbd/content-security-policy/compare/v1.0.1...v1.1.0-canary.1) (2023-03-05)
