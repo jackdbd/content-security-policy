@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## [1.1.0-canary.2](https://github.com/jackdbd/content-security-policy/compare/v1.1.0-canary.1...v1.1.0-canary.2) (2023-03-05)
+
 ## [1.1.0-canary.1](https://github.com/jackdbd/content-security-policy/compare/v1.0.1...v1.1.0-canary.1) (2023-03-05)
 
 
