@@ -1,6 +1,6 @@
 {
   "name": "@jackdbd/content-security-policy",
-  "version": "1.0.1",
+  "version": "1.1.0-canary.2",
   "description": "Content-Security-Policy in JavaScript, with validation and automatic hashes.",
   "author": {
     "name": "Giacomo Debidda",
@@ -59,6 +59,8 @@
     "build:lib": "tsc -p tsconfig.json",
     "build:readme": "doctoc --github README.md --title '<details><summary>Table of Contents</summary>'",
     "clean": "./scripts/clean.mjs",
+    "demo:policy:recommended": "tsm ./scripts/demo.ts --policy recommeded --format directives",
+    "demo:policy:custom": "tsm ./scripts/demo.ts --policy custom --format json",
     "docs": "run-s 'docs:ae' 'docs:ad' 'docs:typedoc' --print-label",
     "docs:ae": "./scripts/api-extractor.mjs",
     "docs:ad": "./scripts/api-documenter.mjs",
@@ -103,8 +105,10 @@
     "npm-run-all": "^4.1.5",
     "pkg-size": "^2.4.0",
     "prettier": "^2.8.4",
+    "pretty-error": "^4.0.0",
     "rimraf": "^4.3.0",
     "semantic-release": "^20.1.1",
+    "tsm": "^2.3.0",
     "typedoc": "^0.23.26",
     "zx": "^7.2.0"
   }
