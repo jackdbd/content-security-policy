@@ -61,4 +61,5 @@ jobs:
           # The github token must allow to push to this GitHub repository.
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_BOT_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.SEMANTIC_RELEASE_BOT_NPM_TOKEN }}
-        run: npx semantic-release --ci --debug
+        # run: npx semantic-release --ci --debug
+        run: npx semantic-release --ci
