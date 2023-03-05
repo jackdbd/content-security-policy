@@ -1,4 +1,3 @@
-import Joi from 'joi'
 import { csp_scheme_source, csp_source_values } from '../lib/schemas.js'
 
 describe('csp_scheme_source', () => {

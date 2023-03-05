@@ -1,7 +1,12 @@
-# @jackdbd/content-security-policy
+# content-security-policy
 
 [![npm version](https://badge.fury.io/js/@jackdbd%2Fcontent-security-policy.svg)](https://badge.fury.io/js/@jackdbd%2Fcontent-security-policy)
 ![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/@jackdbd%2Fcontent-security-policy)
+![CI workflow](https://github.com/jackdbd/content-security-policy/actions/workflows/ci.yaml/badge.svg)
+![Release to npmjs.com workflow](https://github.com/jackdbd/content-security-policy/actions/workflows/release-to-npmjs.yaml/badge.svg)
+[![codecov](https://codecov.io/gh/jackdbd/content-security-policy/branch/main/graph/badge.svg?token=P5uJ3doRer)](https://codecov.io/gh/jackdbd/content-security-policy)
+[![CodeFactor](https://www.codefactor.io/repository/github/jackdbd/content-security-policy/badge)](https://www.codefactor.io/repository/github/jackdbd/content-security-policy)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 
 Content-Security-Policy in JavaScript, with validation and automatic hashes.
 
@@ -77,10 +82,6 @@ console.log(strings)
 | --- | --- |
 | `directives` | [Directives](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives) for the Content-Security-Policy (or Content-Security-Policy-Report-Only) header. |
 | `patterns` | glob patterns for your `.html` files. |
-
-## API
-
-[API docs generated with TypeDoc](https://jackdbd.github.io/calderone/content-security-policy/)
 
 ## Prior art
 

@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 1.0.0-canary.1 (2023-03-05)
+
+
+### Features
+
+* **content-security-policy:** add package ([d5eba2f](https://github.com/jackdbd/content-security-policy/commit/d5eba2f7c76bf39517f19e30bc9d465c2bc9210b))
+* **content-security-policy:** autogenerate hashes for inline script/style ([e8391ff](https://github.com/jackdbd/content-security-policy/commit/e8391ff617b0a266164d61e0ad4bcb7f2cc4f5fc))
+
+
+### Bug Fixes
+
+* **content-security-policy:** add some exports that were missing ([a99c8a5](https://github.com/jackdbd/content-security-policy/commit/a99c8a518804f09da3257bf4e48a1fdac7d562ad))
+* **content-security-policy:** cleanup ([c0c61de](https://github.com/jackdbd/content-security-policy/commit/c0c61deaf72e86ccb7e095e218ee4aa309efe580))
+* migrated from monorepo ([d824f28](https://github.com/jackdbd/content-security-policy/commit/d824f2864aac769bba75d7220c780938c1d61570))
+
 ## @jackdbd/content-security-policy 1.0.0 (2022-10-04)
 
 

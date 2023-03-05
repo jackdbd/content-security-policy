@@ -10,7 +10,7 @@ import {
 import type { Algorithm, DirectiveKey } from './hash.js'
 import type { Directives } from './directives.js'
 
-const debug = makeDebug('csp/source-values')
+const debug = makeDebug('csp:source-values')
 
 interface CspSourceValuesConfigOne {
   algorithm: Algorithm

@@ -1,4 +1,8 @@
-export const PATTERNS = ['../../assets/html-pages/**/*.html']
+import path from 'node:path'
+
+export const HTML_DIR = path.resolve('assets', 'html-pages')
+
+export const PATTERNS = [`${HTML_DIR}/**/*.html`]
 
 export const DIRECTIVES = {
   'base-uri': ['self'],

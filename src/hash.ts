@@ -8,7 +8,7 @@ import {
 } from './html-parsers.js'
 import { contentHash, hashAlgorithmFromCspSourceValues } from './utils.js'
 
-const debug = makeDebug('csp/hash')
+const debug = makeDebug('csp:hash')
 
 export type DirectiveKey =
   | 'script-src'

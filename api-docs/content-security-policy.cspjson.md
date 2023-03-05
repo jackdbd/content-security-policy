@@ -5,7 +5,7 @@
 ## cspJSON variable
 
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 cspJSON: ({ directives, patterns }: Config) => Promise<{}>

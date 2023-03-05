@@ -1,9 +1,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { scriptTagsContents, styleTagsContents } from '../lib/html-parsers.js'
+import { HTML_DIR } from './constants.mjs'
 
-const HTML_DIR = path.resolve('..', '..', 'assets', 'html-pages')
-//   const HTML_DIR = path.join('assets', 'html-pages')
 const html_filepath = path.join(HTML_DIR, 'index.html')
 
 // the <head> of this HTML page contains 2 <script> tags and 1 <style> tag

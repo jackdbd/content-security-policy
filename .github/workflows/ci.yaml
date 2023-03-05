@@ -1,0 +1,56 @@
+name: 'CI'
+
+on:
+  pull_request:
+  push:
+    branches:
+    - canary
+    - main
+
+jobs:
+  audit-build-test:
+    name: Build & Test on ${{ matrix.os }}, Node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+      matrix:
+        os: [ubuntu-latest]
+        # test on latest MAINTENANCE, latest ACTIVE LTS, and CURRENT
+        # https://nodejs.org/en/about/releases/
+        node: ['14.21', 'lts/hydrogen', 'current']
+    steps:
+      - name: 🛎️ Check out repo
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Set up Node.js ${{ matrix.node }}
+        # https://github.com/marketplace/actions/setup-node-js-environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: ⚙️ Install dependencies
+        run: npm install
+
+      - name: 🛡️ Audit dependencies (audit-level high)
+        # https://docs.npmjs.com/cli/v8/commands/npm-audit#audit-level
+        run: npm audit --audit-level high
+
+      - name: 🛡️ Audit dependencies (audit-level moderate)
+        continue-on-error: true
+        run: npm audit --audit-level moderate
+
+      - name: 📦 Build lib/ and docs/
+        run: npm run build
+
+      - name: 🔍 Test library
+        run: npm run test:ci
+
+      - name: ⬆️ Upload test coverage to Codecov
+        # https://github.com/marketplace/actions/codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          fail_ci_if_error: true
+          verbose: true

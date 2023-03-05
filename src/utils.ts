@@ -1,7 +1,7 @@
 import crypto from 'node:crypto'
 import makeDebug from 'debug'
 
-const debug = makeDebug('csp/utils')
+const debug = makeDebug('csp:utils')
 
 export const isBoolean = (val: any) => typeof val === 'boolean'
 
