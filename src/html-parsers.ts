@@ -2,9 +2,8 @@ import fs from 'node:fs'
 import util from 'node:util'
 import makeDebug from 'debug'
 import { parse, parseDefaults } from 'himalaya'
-// import type { HimalayaJson } from '../../../custom-types/himalaya/index.js'
 
-const debug = makeDebug('csp/html-parsers')
+const debug = makeDebug('csp:html-parsers')
 
 const readFileAsync = util.promisify(fs.readFile)
 

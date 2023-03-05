@@ -5,7 +5,7 @@
 ## cspHeader variable
 
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 cspHeader: ({ directives, patterns }: Config) => Promise<string>

@@ -8,7 +8,7 @@ import {
 } from './source-values.js'
 import type { Directives } from './directives.js'
 
-const debug = makeDebug('csp/csp-directives')
+const debug = makeDebug('csp:csp-directives')
 
 /**
  * @public

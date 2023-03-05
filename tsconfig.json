@@ -1,8 +1,32 @@
 {
-  "extends": "../../config/tsconfig.nodejs-lib.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": false,
+    "importsNotUsedAsValues": "error",
+    "incremental": true,
+    "isolatedModules": true,
+    "lib": ["ES2020"],
+    "module": "es2020",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "outDir": "./lib",
-    "rootDir": "./src"
+    "paths": {},
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es2020",
+    // https://www.typescriptlang.org/tsconfig#typeRoots
+    "typeRoots": ["./node_modules/@types", "./custom-types"]
   },
   "include": ["./src/**/*.ts"]
 }

@@ -5,7 +5,7 @@
 ## cspDirectives variable
 
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 cspDirectives: ({ directives, patterns }: Config) => Promise<string[]>

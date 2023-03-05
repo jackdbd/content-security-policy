@@ -5,7 +5,7 @@
 ## validationErrorOrWarnings variable
 
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 validationErrorOrWarnings: ({ allowDeprecatedDirectives, error }: Config) => {

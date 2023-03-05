@@ -1,22 +1,21 @@
 import { hashesStyleSrcElem } from '../lib/hash.js'
+import { PATTERNS } from './constants.mjs'
 
 describe('hashesStyleSrcElem', () => {
   it('produces the expected hashes', async () => {
-    const patterns = ['../../assets/html-pages/**/*.html']
-
     const hashes_256 = await hashesStyleSrcElem({
       algorithm: 'sha256',
-      patterns
+      patterns: PATTERNS
     })
 
     const hashes_384 = await hashesStyleSrcElem({
       algorithm: 'sha384',
-      patterns
+      patterns: PATTERNS
     })
 
     const hashes_512 = await hashesStyleSrcElem({
       algorithm: 'sha512',
-      patterns
+      patterns: PATTERNS
     })
 
     expect(hashes_256.length).toBe(1)
