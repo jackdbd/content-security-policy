@@ -10,6 +10,21 @@
 
 Write you Content-Security-Policy in JavaScript.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<details><summary>Table of Contents</summary>
+
+- [What is this?](#what-is-this)
+- [Why?](#why)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+  - [Required parameters](#required-parameters)
+- [Alternatives](#alternatives)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+</details>
+
 ## What is this?
 
 This package validates your Content-Security-Policy [directives](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives) and computes a crypographic hash (SHA-256, SHA-384 or SHA-512) for each snippet of CSS/JS that you inlined in your HTML file.
@@ -31,20 +46,6 @@ However, writing a good CSP header completely by hand is a pain. Here is why:
   - want to compute the cryptographic hash of each snippet of CSS/JS that you inlined and whitelisting them by hand.
 - You want to keep your CSP quite visible in your codebase, since it's such an important configuration for your website/app.
 - You want to generate your CSP in multiple format (JSON, JS array, plain text), so other tools can easuly consume it.
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<details><summary>Table of Contents</summary>
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-  - [Required parameters](#required-parameters)
-- [API](#api)
-- [Prior art](#prior-art)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-</details>
 
 ## Installation
 
