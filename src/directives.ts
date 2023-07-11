@@ -1,6 +1,7 @@
 export type DeprecatedDirectiveKey =
   | 'block-all-mixed-content'
   | 'plugin-types'
+  | 'prefetch-src'
   | 'referrer'
   | 'report-uri'
   | 'require-sri-for'
@@ -30,6 +31,12 @@ export const deprecatedDirectives: DeprecatedDirectives = {
     ],
     whatToDoInstead: 'use the object-src directive to disallow all plugins'
   },
+  'prefetch-src': {
+    hrefs: [
+      'https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/prefetch-src'
+    ],
+    whatToDoInstead: 'avoid using it'
+  },
   referrer: {
     hrefs: [
       'https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/referrer'
@@ -46,7 +53,7 @@ export const deprecatedDirectives: DeprecatedDirectives = {
     hrefs: [
       'https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-sri-for'
     ],
-    whatToDoInstead: 'TODO: just drop it?'
+    whatToDoInstead: 'avoid using it'
   }
 }
 
@@ -68,7 +75,6 @@ export const supportedDirectivesSet = new Set([
   'media-src',
   'navigate-to',
   'object-src',
-  'prefetch-src',
   'report-to',
   'require-trusted-types-for',
   'sandbox',

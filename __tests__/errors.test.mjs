@@ -18,21 +18,32 @@ describe('validationErrorOrWarnings', () => {
   })
 
   it('is an error when the configuration is valid but it is used a deprecated CSP directive and allowDeprecatedDirectives is false', () => {
-    const deprecated_directive = 'block-all-mixed-content'
-    const message = 'this is a validation error'
-    const details = [{ path: ['foo', deprecated_directive] }]
-    const original = {}
+    const deprecated_directives = [
+      'block-all-mixed-content',
+      'plugin-types',
+      'prefetch-src',
+      'referrer',
+      'report-uri',
+      'require-sri-for'
+    ]
 
-    const { error, warnings } = validationErrorOrWarnings({
-      error: new Joi.ValidationError(message, details, original),
-      allowDeprecatedDirectives: false
+    deprecated_directives.forEach((deprecated_directive) => {
+      const message = 'this is a validation error'
+      const details = [{ path: ['foo', deprecated_directive] }]
+      const original = {}
+
+      const { error, warnings } = validationErrorOrWarnings({
+        error: new Joi.ValidationError(message, details, original),
+        allowDeprecatedDirectives: false
+      })
+
+      expect(error).toBeDefined()
+
+      expect(error.message).toContain('invalid configuration')
+      expect(error.message).toContain('deprecated directive')
+      expect(error.message).toContain(deprecated_directive)
+      expect(warnings.length).toBe(0)
     })
-
-    expect(error).toBeDefined()
-    expect(error.message).toContain('invalid configuration')
-    expect(error.message).toContain('deprecated directive')
-    expect(error.message).toContain(deprecated_directive)
-    expect(warnings.length).toBe(0)
   })
 
   it('is a warning when the configuration is valid but it is used a deprecated CSP directive and allowDeprecatedDirectives is true', () => {

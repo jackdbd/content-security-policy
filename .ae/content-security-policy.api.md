@@ -35,7 +35,6 @@ export const recommended_policy: {
     'frame-ancestors': string[];
     'manifest-src': string[];
     'object-src': string[];
-    'prefetch-src': string[];
     'upgrade-insecure-requests': boolean;
     'base-uri': string[];
     'connect-src': string[];

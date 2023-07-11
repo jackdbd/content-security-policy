@@ -116,7 +116,6 @@ export const directives = Joi.object({
   'media-src': csp_source_values,
   'navigate-to': csp_source_values,
   'object-src': csp_source_values,
-  'prefetch-src': csp_source_values,
   'report-to': groupnames,
   'require-trusted-types-for': Joi.array()
     .items(require_trusted_types_for_value)

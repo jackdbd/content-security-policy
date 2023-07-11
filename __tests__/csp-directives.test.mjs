@@ -4,13 +4,12 @@ import { isObject, isString } from '../lib/utils.js'
 
 describe('cspDirectives', () => {
   it('is an array', async () => {
-    const arr = await cspDirectives({
-      directives: DIRECTIVES,
-      patterns: PATTERNS
-    })
+    const directives = DIRECTIVES
+    const patterns = PATTERNS
+    const arr = await cspDirectives({ directives, patterns })
 
     expect(arr).toBeDefined()
-    expect(arr.length).toBe(Object.keys(DIRECTIVES).length)
+    expect(arr.length).toBe(Object.keys(directives).length)
   })
 })
 
