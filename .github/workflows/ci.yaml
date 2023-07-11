@@ -18,7 +18,7 @@ jobs:
         os: [ubuntu-latest]
         # test on latest MAINTENANCE, latest ACTIVE LTS, and CURRENT
         # https://nodejs.org/en/about/releases/
-        node: ['14.21', 'lts/hydrogen', 'current']
+        node: ['lts/gallium', 'lts/hydrogen', 'current']
     steps:
       - name: 🛎️ Check out repo
         uses: actions/checkout@v3
