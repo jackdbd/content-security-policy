@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [2.0.0-canary.1](https://github.com/jackdbd/content-security-policy/compare/v1.1.1...v2.0.0-canary.1) (2023-07-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* The prefetch-src directive has been deprecated.
+
+### Features
+
+* deprecate prefetch-src CSP directive ([b0c78fe](https://github.com/jackdbd/content-security-policy/commit/b0c78fe37ac97820b91f037c645f2ea162611da8))
+
 ## [1.1.1](https://github.com/jackdbd/content-security-policy/compare/v1.1.0...v1.1.1) (2023-03-05)
 
 ## [1.1.0](https://github.com/jackdbd/content-security-policy/compare/v1.0.1...v1.1.0) (2023-03-05)
