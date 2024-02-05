@@ -1,5 +1,6 @@
+import defDebug from 'debug'
 import { globby } from 'globby'
-import makeDebug from 'debug'
+import { DEBUG_PREFIX } from './constants.js'
 import {
   scriptTagsContents,
   styleTagsContents,
@@ -8,7 +9,7 @@ import {
 } from './html-parsers.js'
 import { contentHash, hashAlgorithmFromCspSourceValues } from './utils.js'
 
-const debug = makeDebug('csp:hash')
+const debug = defDebug(`${DEBUG_PREFIX}:hash`)
 
 export type DirectiveKey =
   | 'script-src'

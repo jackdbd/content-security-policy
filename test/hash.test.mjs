@@ -1,3 +1,5 @@
+import assert from 'node:assert'
+import { describe, it } from 'node:test'
 import { hashesStyleSrcElem } from '../lib/hash.js'
 import { PATTERNS } from './constants.mjs'
 
@@ -18,21 +20,21 @@ describe('hashesStyleSrcElem', () => {
       patterns: PATTERNS
     })
 
-    expect(hashes_256.length).toBe(1)
-    expect(hashes_384.length).toBe(1)
-    expect(hashes_512.length).toBe(1)
+    assert.equal(hashes_256.length, 1)
+    assert.equal(hashes_384.length, 1)
+    assert.equal(hashes_512.length, 1)
 
     hashes_256.forEach((hash_256, i) => {
       const hash_384 = hashes_384[i]
       const hash_512 = hashes_512[i]
 
-      expect(hash_384).not.toBe(hash_256)
-      expect(hash_512).not.toBe(hash_256)
-      expect(hash_512).not.toBe(hash_384)
+      assert.notEqual(hash_384, hash_256)
+      assert.notEqual(hash_512, hash_256)
+      assert.notEqual(hash_512, hash_384)
 
-      expect(hash_256.length).toBe(51)
-      expect(hash_384.length).toBe(71)
-      expect(hash_512.length).toBe(95)
+      assert.equal(hash_256.length, 51)
+      assert.equal(hash_384.length, 71)
+      assert.equal(hash_512.length, 95)
     })
   })
 })

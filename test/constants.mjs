@@ -1,6 +1,6 @@
 import path from 'node:path'
 
-export const HTML_DIR = path.resolve('assets', 'html-pages')
+export const HTML_DIR = path.resolve('fixtures', 'html')
 
 export const PATTERNS = [`${HTML_DIR}/**/*.html`]
 

@@ -1,9 +1,10 @@
 import fs from 'node:fs'
 import util from 'node:util'
-import makeDebug from 'debug'
+import defDebug from 'debug'
 import { parse, parseDefaults } from 'himalaya'
+import { DEBUG_PREFIX } from './constants.js'
 
-const debug = makeDebug('csp:html-parsers')
+const debug = defDebug(`${DEBUG_PREFIX}:html-parsers`)
 
 const readFileAsync = util.promisify(fs.readFile)
 

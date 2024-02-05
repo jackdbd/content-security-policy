@@ -21,14 +21,25 @@ export const cspHeader: ({ directives, patterns }: Config) => Promise<string>;
 // @public (undocumented)
 export const cspJSON: ({ directives, patterns }: Config) => Promise<{}>;
 
+// Warning: (ae-missing-release-tag) "DeprecatedDirectiveKey" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public (undocumented)
+export type DeprecatedDirectiveKey = 'block-all-mixed-content' | 'plugin-types' | 'prefetch-src' | 'referrer' | 'report-uri' | 'require-sri-for';
+
+// Warning: (ae-forgotten-export) The symbol "DeprecatedDirectiveValue" needs to be exported by the entry point index.d.ts
+// Warning: (ae-missing-release-tag) "DeprecatedDirectives" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public (undocumented)
+export type DeprecatedDirectives = {
+    [key in DeprecatedDirectiveKey]: DeprecatedDirectiveValue;
+};
+
 // @public (undocumented)
 export interface Directives {
     // (undocumented)
     [k: string]: string[];
 }
 
-// Warning: (ae-missing-release-tag) "recommended_policy" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
-//
 // @public
 export const recommended_policy: {
     'font-src': string[];
@@ -45,8 +56,6 @@ export const recommended_policy: {
     'style-src': string[];
 };
 
-// Warning: (ae-missing-release-tag) "starter_policy" is part of the package's API, but it is missing a release tag (@alpha, @beta, @public, or @internal)
-//
 // @public
 export const starter_policy: {
     'base-uri': string[];

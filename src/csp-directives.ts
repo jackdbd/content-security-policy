@@ -1,14 +1,15 @@
-import makeDebug from 'debug'
-import { stringReplacer } from './utils.js'
+import defDebug from 'debug'
+import { DEBUG_PREFIX } from './constants.js'
+import type { Directives } from './directives.js'
 import {
   cspSourceValuesStyleAttr,
   cspSourceValuesScriptElem,
   cspSourceValuesScriptAttr,
   cspSourceValuesStyleElem
 } from './source-values.js'
-import type { Directives } from './directives.js'
+import { stringReplacer } from './utils.js'
 
-const debug = makeDebug('csp:csp-directives')
+const debug = defDebug(`${DEBUG_PREFIX}:csp-directives`)
 
 /**
  * @public

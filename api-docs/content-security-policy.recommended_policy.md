@@ -6,8 +6,6 @@
 
 Recommended policy for most sites.
 
-Differences with the standard policy are the following ones: - font-src is set to 'self', to allow self-hosted fonts - frame-ancestors is set to 'none' - manifest-src is set to 'self', to allow a self-hosted web application manifest,so the website can be installed as Progressive Web App. Learn more: https://developer.mozilla.org/en-US/docs/Web/Manifest - object-src is set to 'none' as recommended here: https://csp.withgoogle.com/docs/strict-csp.html - upgrade-insecure-requests is set to true, even if I am not sure it's really necessary, since it does NOT replace HSTS. Learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests
-
 **Signature:**
 
 ```typescript
@@ -26,3 +24,8 @@ recommended_policy: {
     'style-src': string[];
 }
 ```
+
+## Remarks
+
+Here are the differences with the starter policy: - font-src is set to 'self', to allow self-hosted fonts - frame-ancestors is set to 'none' - manifest-src is set to 'self', to allow a self-hosted web application manifest,so the website can be installed as Progressive Web App. Learn more: https://developer.mozilla.org/en-US/docs/Web/Manifest - object-src is set to 'none' as recommended here: https://csp.withgoogle.com/docs/strict-csp.html - upgrade-insecure-requests is set to true, even if I am not sure it's really necessary, since it does NOT replace HSTS. Learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests
+

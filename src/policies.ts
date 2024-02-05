@@ -1,6 +1,9 @@
 /**
- * This is the starter policy described here:
- * https://content-security-policy.com/
+ * Starter policy.
+ *
+ * @see [content-security-policy.com - Content Security Policy Reference](https://content-security-policy.com/)
+ *
+ * @public
  */
 export const starter_policy = {
   'base-uri': ['self'],
@@ -15,7 +18,10 @@ export const starter_policy = {
 /**
  * Recommended policy for most sites.
  *
- * Differences with the standard policy are the following ones:
+ * @see [content-security-policy.com - Content Security Policy Reference](https://content-security-policy.com/)
+ *
+ * @remarks
+ * Here are the differences with the starter policy:
  * - font-src is set to 'self', to allow self-hosted fonts
  * - frame-ancestors is set to 'none'
  * - manifest-src is set to 'self', to allow a self-hosted web application
@@ -25,6 +31,8 @@ export const starter_policy = {
  * - upgrade-insecure-requests is set to true, even if I am not sure it's
  *   really necessary, since it does NOT replace HSTS.
  *   Learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests
+ *
+ * @public
  */
 export const recommended_policy = {
   ...starter_policy,
