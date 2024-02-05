@@ -1,6 +1,6 @@
 import defDebug from 'debug'
 import { DEBUG_PREFIX } from './constants.js'
-import type { Directives } from './directives.js'
+import type { Directives } from './schemas.js'
 import {
   cspSourceValuesStyleAttr,
   cspSourceValuesScriptElem,

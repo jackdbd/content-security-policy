@@ -11,5 +11,5 @@ export type DeprecatedDirectives = {
     [key in DeprecatedDirectiveKey]: DeprecatedDirectiveValue;
 };
 ```
-**References:** [DeprecatedDirectiveKey](./content-security-policy.deprecateddirectivekey.md)
+**References:** [DeprecatedDirectiveKey](./content-security-policy.deprecateddirectivekey.md)<!-- -->, [DeprecatedDirectiveValue](./content-security-policy.deprecateddirectivevalue.md)
 

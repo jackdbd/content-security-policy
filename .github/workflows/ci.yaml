@@ -7,20 +7,19 @@ on:
     - canary
     - main
 
-# Permissions in a GitHub workflow
-# https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
-# This GitHub workflow runs semantic-release and semantic-release/github plugin.
-# The mininum set of permissions required by semantic-release/github is this:
-# https://github.com/semantic-release/github#configuration
-# https://github.com/semantic-release/semantic-release/issues/2481#issuecomment-1409780688
-permissions:
-    contents: write
-    issues: write
-    pull-requests: write
-
 jobs:
-  audit-build-test:
-    name: Audit, build, test on ${{ matrix.os }}, Node ${{ matrix.node }}
+  audit-build-test-release:
+    name: Audit, build, test, release on ${{ matrix.os }}, Node ${{ matrix.node }}
+
+    # The minimum set of permissions required by semantic-release/github for
+    # the GITHUB_TOKEN and this job is explained here:
+    # https://github.com/semantic-release/github#configuration
+    # https://github.com/semantic-release/semantic-release/issues/2481#issuecomment-1409780688
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: true

@@ -7,5 +7,7 @@
 **Signature:**
 
 ```typescript
-export type DeprecatedDirectiveKey = 'block-all-mixed-content' | 'plugin-types' | 'prefetch-src' | 'referrer' | 'report-uri' | 'require-sri-for';
+export type DeprecatedDirectiveKey = z.infer<typeof deprecated_directive_key>;
 ```
+**References:** [deprecated\_directive\_key](./content-security-policy.deprecated_directive_key.md)
+

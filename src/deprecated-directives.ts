@@ -1,11 +1,4 @@
-export type DeprecatedDirectiveKey =
-  | 'block-all-mixed-content'
-  | 'plugin-types'
-  | 'prefetch-src'
-  | 'referrer'
-  | 'report-uri'
-  | 'require-sri-for'
-
+import { DeprecatedDirectiveKey } from './schemas.js'
 export interface DeprecatedDirectiveValue {
   hrefs: string[]
   whatToDoInstead: string
@@ -55,44 +48,4 @@ export const deprecatedDirectives: DeprecatedDirectives = {
     ],
     whatToDoInstead: 'avoid using it'
   }
-}
-
-export const deprecatedDirectivesSet = new Set(
-  Object.keys(deprecatedDirectives) // as DeprecatedDirectiveKey[]
-)
-
-export const supportedDirectivesSet = new Set([
-  'base-uri',
-  'child-src',
-  'connect-src',
-  'default-src',
-  'font-src',
-  'form-action',
-  'frame-ancestors',
-  'frame-src',
-  'img-src',
-  'manifest-src',
-  'media-src',
-  'navigate-to',
-  'object-src',
-  'report-to',
-  'require-trusted-types-for',
-  'sandbox',
-  'script-src',
-  'script-src-attr',
-  'script-src-elem',
-  'source-values',
-  'style-src',
-  'style-src-attr',
-  'style-src-elem',
-  'trusted-types',
-  'upgrade-insecure-requests',
-  'worker-src'
-])
-
-/**
- * @public
- */
-export interface Directives {
-  [k: string]: string[]
 }

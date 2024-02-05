@@ -1,9 +1,7 @@
 import defDebug from 'debug'
 import { DEBUG_PREFIX } from './constants.js'
-import type { Directives } from './directives.js'
 import {
   type Algorithm,
-  type DirectiveKey,
   hashAlgorithmMap,
   noHashSpecifiedMessage,
   hashesScriptSrcAttr,
@@ -11,6 +9,7 @@ import {
   hashesStyleSrcAttr,
   hashesStyleSrcElem
 } from './hash.js'
+import type { Directives, SrcKey } from './schemas.js'
 
 const debug = defDebug(`${DEBUG_PREFIX}:source-values`)
 
@@ -38,13 +37,13 @@ const cspSourceValues = ({
 }
 
 interface Config {
-  directive: DirectiveKey
+  directive: SrcKey
   directives: Directives
   patterns: string[]
 }
 
 interface AlgorithmConfig {
-  directive: DirectiveKey
+  directive: SrcKey
   directives: Directives
 }
 
@@ -79,7 +78,7 @@ export const cspSourceValuesScriptAttr = async ({
   return cspSourceValues({
     algorithm,
     hashes,
-    values: directives[directive]
+    values: directives[directive] || []
   })
 }
 
@@ -112,7 +111,7 @@ export const cspSourceValuesScriptElem = async ({
   return cspSourceValues({
     algorithm,
     hashes,
-    values: directives[directive]
+    values: directives[directive] || []
   })
 }
 
@@ -142,7 +141,7 @@ export const cspSourceValuesStyleAttr = async ({
   return cspSourceValues({
     algorithm,
     hashes,
-    values: directives[directive]
+    values: directives[directive] || []
   })
 }
 
@@ -175,6 +174,6 @@ export const cspSourceValuesStyleElem = async ({
   return cspSourceValues({
     algorithm,
     hashes,
-    values: directives[directive]
+    values: directives[directive] || []
   })
 }

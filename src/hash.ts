@@ -7,32 +7,25 @@ import {
   inlineEventHandlerContents,
   inlineStyleContents
 } from './html-parsers.js'
+import type { SrcKey } from './schemas.js'
 import { contentHash, hashAlgorithmFromCspSourceValues } from './utils.js'
 
 const debug = defDebug(`${DEBUG_PREFIX}:hash`)
 
-export type DirectiveKey =
-  | 'script-src'
-  | 'script-src-attr'
-  | 'script-src-elem'
-  | 'style-src'
-  | 'style-src-attr'
-  | 'style-src-elem'
-
-export type CspSources = string[]
-
 export type HashAlgorithmMapConfig = {
-  [key in DirectiveKey]: string | undefined
+  [key: string]: string[] | boolean | undefined
+}
+
+export type HashAlgorithmMap = {
+  [key in SrcKey]: string | undefined
 }
 
 /**
  * Detects the hash algorithm to use for all CSP source values in a CSP directive.
  * Different directives might use different hash algorithms.
  */
-export const hashAlgorithmMap = (config: {
-  [k: string]: CspSources | undefined
-}) => {
-  const m: HashAlgorithmMapConfig = {
+export const hashAlgorithmMap = (config: HashAlgorithmMapConfig) => {
+  const m: HashAlgorithmMap = {
     'script-src': undefined,
     'script-src-attr': undefined,
     'script-src-elem': undefined,
@@ -40,13 +33,14 @@ export const hashAlgorithmMap = (config: {
     'style-src-attr': undefined,
     'style-src-elem': undefined
   }
-  const errors: any[] = []
 
-  const directives = Object.keys(m) as DirectiveKey[]
+  const errors: Error[] = []
+
+  const directives = Object.keys(m) as SrcKey[]
 
   directives.forEach((directive) => {
     const sources = config[directive]
-    if (sources) {
+    if (sources && Array.isArray(sources) && sources.length > 0) {
       debug(
         `CSP directive ${directive} specifies ${sources.length} CSP source value/s: %o`,
         sources

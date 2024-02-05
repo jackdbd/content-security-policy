@@ -10,11 +10,10 @@ export {
   type Config
 } from './csp-directives.js'
 
-export type {
-  Directives,
-  DeprecatedDirectives,
-  DeprecatedDirectiveKey
-} from './directives.js'
+export {
+  type DeprecatedDirectiveValue,
+  type DeprecatedDirectives
+} from './deprecated-directives.js'
 
 export {
   validationErrorOrWarnings,
@@ -22,3 +21,10 @@ export {
 } from './errors.js'
 
 export { starter_policy, recommended_policy } from './policies.js'
+
+export {
+  deprecated_directive_key,
+  type DeprecatedDirectiveKey,
+  directives,
+  type Directives
+} from './schemas.js'

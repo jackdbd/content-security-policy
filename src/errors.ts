@@ -1,5 +1,5 @@
-import { deprecatedDirectives } from './directives.js'
-import type { DeprecatedDirectiveKey } from './directives.js'
+import { deprecatedDirectives } from './deprecated-directives.js'
+import { type DeprecatedDirectiveKey } from './schemas.js'
 
 /**
  * @public

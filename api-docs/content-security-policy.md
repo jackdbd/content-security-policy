@@ -11,7 +11,7 @@ Entry point for the documentation of content-security-policy.
 |  Interface | Description |
 |  --- | --- |
 |  [Config](./content-security-policy.config.md) |  |
-|  [Directives](./content-security-policy.directives.md) |  |
+|  [DeprecatedDirectiveValue](./content-security-policy.deprecateddirectivevalue.md) |  |
 |  [ValidationErrorOrWarningsConfig](./content-security-policy.validationerrororwarningsconfig.md) |  |
 
 ## Variables
@@ -21,6 +21,8 @@ Entry point for the documentation of content-security-policy.
 |  [cspDirectives](./content-security-policy.cspdirectives.md) |  |
 |  [cspHeader](./content-security-policy.cspheader.md) |  |
 |  [cspJSON](./content-security-policy.cspjson.md) |  |
+|  [deprecated\_directive\_key](./content-security-policy.deprecated_directive_key.md) |  |
+|  [directives](./content-security-policy.directives.md) |  |
 |  [recommended\_policy](./content-security-policy.recommended_policy.md) | Recommended policy for most sites. |
 |  [starter\_policy](./content-security-policy.starter_policy.md) | Starter policy. |
 |  [validationErrorOrWarnings](./content-security-policy.validationerrororwarnings.md) |  |
@@ -31,4 +33,5 @@ Entry point for the documentation of content-security-policy.
 |  --- | --- |
 |  [DeprecatedDirectiveKey](./content-security-policy.deprecateddirectivekey.md) |  |
 |  [DeprecatedDirectives](./content-security-policy.deprecateddirectives.md) |  |
+|  [Directives](./content-security-policy.directives.md) |  |
 
