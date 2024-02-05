@@ -90,7 +90,7 @@ jobs:
           verbose: true
 
       - name: 📦 Size report
-        if: matrix.os == 'ubuntu-latest'
+        if: ${{ github.event_name == 'pull_request' && matrix.os == 'ubuntu-latest' }}
         # https://github.com/marketplace/actions/pkg-size-action
         uses: pkg-size/action@v1
         env:
