@@ -28,7 +28,7 @@ jobs:
       max-parallel: 1
       matrix:
         # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest]
         # Test all packages with:
         # 1. Maintenance LTS
         # 2. Active LTS
@@ -62,21 +62,11 @@ jobs:
         run: npm audit --audit-level moderate
 
       - name: 🔨 📖 Build npm package and docs (Linux)
-        if: runner.os == 'Linux'
         run: npm run build
 
-      - name: 📦 Build just the npm package (macOS / Windows)
-        if: runner.os == 'macOS' || runner.os == 'Windows'
-        run: npm run build:lib
-
       - name: 🔍 Test on Linux
-        if: runner.os == 'Linux'
         run: npm run test:ci
       
-      - name: 🔍 Test on macOS / Windows
-        if: runner.os == 'macOS' || runner.os == 'Windows'
-        run: npm run test
-
       - name: ⬆️ Upload test coverage to Codecov
         if: runner.os == 'Linux'
         # https://github.com/marketplace/actions/codecov
@@ -110,6 +100,34 @@ jobs:
           NPM_TOKEN: ${{ secrets.SEMANTIC_RELEASE_BOT_NPM_TOKEN }}
         run: npx semantic-release --ci
 
+  macos-build-test:
+    name: Build & test on ${{ matrix.os }}, Node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+      matrix:
+        os: [macos-latest]
+        node: [ lts/Iron]
+    steps:
+      - name: 🛎️ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Set up Node.js ${{ matrix.node }}
+        # https://github.com/marketplace/actions/setup-node-js-environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: ⬇️ Install dependencies
+        run: npm ci
+      
+      - name: 📦 Build npm package
+        run: npm run build:lib
+      
+      - name: 🔍 Test
+        run: npm run test
+
   windows-build-test:
     name: Build & test on ${{ matrix.os }}, Node ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
@@ -135,5 +153,5 @@ jobs:
         run: npm run build:lib
       
       # TODO: a few tests fail on Windows!!!
-      # - name: 🔍 Test
-      #   run: npm run test
+      - name: 🔍 Test
+        run: npm run test
