@@ -1,5 +1,7 @@
-import { cspDirectives, cspHeader, cspJSON } from '../lib/csp-directives.js'
+import assert from 'node:assert'
+import { describe, it } from 'node:test'
 import { DIRECTIVES, PATTERNS } from './constants.mjs'
+import { cspDirectives, cspHeader, cspJSON } from '../lib/csp-directives.js'
 import { isObject, isString } from '../lib/utils.js'
 
 describe('cspDirectives', () => {
@@ -8,8 +10,8 @@ describe('cspDirectives', () => {
     const patterns = PATTERNS
     const arr = await cspDirectives({ directives, patterns })
 
-    expect(arr).toBeDefined()
-    expect(arr.length).toBe(Object.keys(directives).length)
+    assert.notEqual(arr, undefined)
+    assert.equal(arr.length, Object.keys(directives).length)
   })
 })
 
@@ -20,8 +22,8 @@ describe('cspHeader', () => {
       patterns: PATTERNS
     })
 
-    expect(header).toBeDefined()
-    expect(isString(header)).toBeTruthy()
+    assert.notEqual(header, undefined)
+    assert.equal(isString(header), true)
   })
 })
 
@@ -32,7 +34,7 @@ describe('cspJSON', () => {
       patterns: PATTERNS
     })
 
-    expect(json).toBeDefined()
-    expect(isObject(json)).toBeTruthy()
+    assert.notEqual(json, undefined)
+    assert.equal(isObject(json), true)
   })
 })

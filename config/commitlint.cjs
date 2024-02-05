@@ -1,25 +1,33 @@
-// https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional
+/**
+ * Configuration for commitlint.
+ *
+ * @see [commitlint-config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional)
+ * @see [commitlint-rules](https://github.com/conventional-changelog/commitlint/blob/master/docs/reference-rules.md)
+ * @see [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0/)
+ */
 const config = {
-  extends: ["@commitlint/config-conventional"],
+  // commitlint configuration that enforces conventional commits.
+  extends: ['@commitlint/config-conventional'],
   ignores: [
     (message) => {
-      return message.includes("initial commit") || message.includes("WIP");
-    },
+      return message.includes('initial commit')
+    }
   ],
-  // https://github.com/conventional-changelog/commitlint/blob/master/docs/reference-rules.md
   rules: {
     // I configured semantic-release git plugin to create a release commit
     // message containing release notes in the commit body. This would exceed
     // the limit set by the config-conventional preset. So I override the rule.
-    "body-max-line-length": [2, "always", Infinity],
-  },
-};
+    'body-max-line-length': [2, 'always', Infinity]
+  }
+}
 
-// As a reminder, a convential commit message has the following structure:
+// The Convential Commits specification enforces this structure for commit messages:
 //////////////////////////
 // type(scope): subject //
 //////////////////////////
-// type must be one of:
+// `type` and `subject` are required, while `scope` is optional.
+// The Convential Commits specification allows any string as the `type`. However,
+// commitlint/config-conventional defines these types:
 // - build
 // - chore
 // - ci
@@ -31,6 +39,5 @@ const config = {
 // - revert
 // - style
 // - test
-// TODO: what about a type of BREAKING CHANGE?
 
-module.exports = config;
+module.exports = config

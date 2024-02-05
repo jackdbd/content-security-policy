@@ -1,7 +1,7 @@
 {
   "name": "@jackdbd/content-security-policy",
   "version": "2.0.0",
-  "description": "Content-Security-Policy in JavaScript, with validation and automatic hashes.",
+  "description": "Write your Content-Security-Policy header in JavaScript, so you can have validation and automatic hashes.",
   "author": {
     "name": "Giacomo Debidda",
     "email": "giacomo@giacomodebidda.com",
@@ -33,17 +33,27 @@
     "node": ">=14.21.3"
   },
   "type": "module",
-  "module": "lib/index.js",
-  "typings": "lib/index.d.ts",
   "exports": {
-    ".": "./lib/index.js",
-    "./errors": "./lib/errors.js",
-    "./policies": "./lib/policies.js",
-    "./schemas": "./lib/schemas.js",
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    },
+    "./errors": {
+      "types": "./lib/errors.d.ts",
+      "import": "./lib/errors.js"
+    },
+    "./policies": {
+      "types": "./lib/policies.d.ts",
+      "import": "./lib/policies.js"
+    },
+    "./schemas": {
+      "types": "./lib/schemas.d.ts",
+      "import": "./lib/schemas.js"
+    },
     "./package.json": "./package.json"
   },
   "typesVersions": {
-    "*": {
+    ">=4.0": {
       "*": [
         "./lib/*.d.ts"
       ]
@@ -51,64 +61,72 @@
   },
   "files": [
     "CHANGELOG.md",
-    "api-docs",
+    "LICENSE",
+    "README.md",
     "lib"
   ],
   "scripts": {
-    "build": "run-s 'build:lib' 'build:readme' 'docs:ae' 'docs:ad' 'docs:typedoc' --print-label",
+    "build": "run-s 'build:lib' 'readme' 'docs' --print-label",
     "build:lib": "tsc -p tsconfig.json",
-    "build:readme": "doctoc --github README.md --title '<details><summary>Table of Contents</summary>'",
-    "clean": "./scripts/clean.mjs",
-    "demo:policy:recommended": "tsm ./scripts/demo.ts --policy recommeded --format directives",
+    "build:lib:watch": "tsc -p tsconfig.json --watch",
+    "clean": "rm -rf .ae/doc/ .ae/temp/ coverage/ lib/ tsconfig.tsbuildinfo",
     "demo:policy:custom": "tsm ./scripts/demo.ts --policy custom --format json",
+    "demo:policy:recommended": "tsm ./scripts/demo.ts --policy recommeded --format directives",
+    "deps:upgrade": "ncu --dep 'dev,prod' --deep --interactive --upgrade --loglevel info",
+    "dev": "run-p build:lib:watch test:watch",
     "docs": "run-s 'docs:ae' 'docs:ad' 'docs:typedoc' --print-label",
     "docs:ae": "./scripts/api-extractor.mjs",
     "docs:ad": "./scripts/api-documenter.mjs",
     "docs:typedoc": "./scripts/typedoc.mjs",
-    "format": "prettier --config config/prettier.cjs --write ./{__tests__,src}/**/*.{cjs,js,mjs,ts}",
+    "format": "prettier --config config/prettier.cjs --write ./{src,test}/**/*.{cjs,js,mjs,ts}",
     "lint": "eslint --config ./config/eslint.cjs",
-    "ncu:dev": "ncu --doctor --dep 'dev' --upgrade",
-    "nuke": "npm run clean && rimraf node_modules 'package-lock.json'",
+    "nuke": "npm run clean && rm -rf node_modules 'package-lock.json'",
     "precommit": "lint-staged --config ./config/lint-staged.cjs",
+    "readme": "tsm ./scripts/readme.ts",
     "release:dry": "npx semantic-release --no-ci --debug --dry-run",
     "size": "pkg-size ./lib --sort-by=brotli --ignore-files {*.d.ts,*.map}",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config ./config/jest.cjs --rootDir ./",
-    "test:ci": "npm run test -- --ci --coverage",
-    "test:watch": "npm run test -- --watch"
+    "test": "node --test --experimental-test-coverage",
+    "test:ci": "node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info",
+    "test:watch": "node --test --watch"
   },
   "dependencies": {
     "debug": "^4.3.4",
-    "globby": "^13.2.2",
+    "globby": "^14.0.0",
     "himalaya": "^1.1.0",
-    "joi": "^17.9.2"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.6.0",
+    "@commitlint/config-conventional": "^18.6.0",
     "@jackdbd/checks": "^2.0.0",
-    "@microsoft/api-documenter": "^7.8.20",
-    "@microsoft/api-extractor": "^7.9.0",
+    "@jackdbd/zod-to-doc": "^1.0.3",
+    "@microsoft/api-documenter": "^7.23.20",
+    "@microsoft/api-extractor": "^7.39.4",
     "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^10.0.1",
+    "@semantic-release/commit-analyzer": "^11.1.0",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/release-notes-generator": "^11.0.4",
-    "@types/debug": "^4.1.8",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "conventional-changelog-conventionalcommits": "^6.1.0",
-    "doctoc": "^2.2.1",
-    "eslint": "^8.44.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "jest": "^29.6.1",
-    "lint-staged": "^13.2.3",
-    "npm-check-updates": "^16.10.15",
+    "@semantic-release/release-notes-generator": "^12.1.0",
+    "@thi.ng/transclude": "^0.1.63",
+    "@types/debug": "^4.1.12",
+    "@typescript-eslint/eslint-plugin": "^6.20.0",
+    "@typescript-eslint/parser": "^6.20.0",
+    "conventional-changelog-conventionalcommits": "^7.0.2",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "lint-staged": "^15.2.1",
+    "npm-check-updates": "^16.14.14",
     "npm-run-all": "^4.1.5",
     "pkg-size": "^2.4.0",
-    "prettier": "^3.0.0",
+    "prettier": "^3.2.5",
     "pretty-error": "^4.0.0",
-    "rimraf": "^5.0.1",
-    "semantic-release": "^21.0.7",
+    "semantic-release": "^23.0.0",
+    "simple-git-hooks": "^2.9.0",
     "tsm": "^2.3.0",
-    "typedoc": "^0.24.8",
+    "typedoc": "^0.25.7",
     "zx": "^7.2.3"
+  },
+  "simple-git-hooks": {
+    "pre-push": "npx commitlint --config ./config/commitlint.cjs --to HEAD"
   }
 }

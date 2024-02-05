@@ -1,5 +1,9 @@
-import makeDebug from 'debug'
+import defDebug from 'debug'
+import { DEBUG_PREFIX } from './constants.js'
+import type { Directives } from './directives.js'
 import {
+  type Algorithm,
+  type DirectiveKey,
   hashAlgorithmMap,
   noHashSpecifiedMessage,
   hashesScriptSrcAttr,
@@ -7,10 +11,8 @@ import {
   hashesStyleSrcAttr,
   hashesStyleSrcElem
 } from './hash.js'
-import type { Algorithm, DirectiveKey } from './hash.js'
-import type { Directives } from './directives.js'
 
-const debug = makeDebug('csp:source-values')
+const debug = defDebug(`${DEBUG_PREFIX}:source-values`)
 
 interface CspSourceValuesConfigOne {
   algorithm: Algorithm

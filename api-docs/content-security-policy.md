@@ -21,7 +21,14 @@ Entry point for the documentation of content-security-policy.
 |  [cspDirectives](./content-security-policy.cspdirectives.md) |  |
 |  [cspHeader](./content-security-policy.cspheader.md) |  |
 |  [cspJSON](./content-security-policy.cspjson.md) |  |
-|  [recommended\_policy](./content-security-policy.recommended_policy.md) | <p>Recommended policy for most sites.</p><p>Differences with the standard policy are the following ones: - font-src is set to 'self', to allow self-hosted fonts - frame-ancestors is set to 'none' - manifest-src is set to 'self', to allow a self-hosted web application manifest,so the website can be installed as Progressive Web App. Learn more: https://developer.mozilla.org/en-US/docs/Web/Manifest - object-src is set to 'none' as recommended here: https://csp.withgoogle.com/docs/strict-csp.html - upgrade-insecure-requests is set to true, even if I am not sure it's really necessary, since it does NOT replace HSTS. Learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests</p> |
-|  [starter\_policy](./content-security-policy.starter_policy.md) | This is the starter policy described here: https://content-security-policy.com/ |
+|  [recommended\_policy](./content-security-policy.recommended_policy.md) | Recommended policy for most sites. |
+|  [starter\_policy](./content-security-policy.starter_policy.md) | Starter policy. |
 |  [validationErrorOrWarnings](./content-security-policy.validationerrororwarnings.md) |  |
+
+## Type Aliases
+
+|  Type Alias | Description |
+|  --- | --- |
+|  [DeprecatedDirectiveKey](./content-security-policy.deprecateddirectivekey.md) |  |
+|  [DeprecatedDirectives](./content-security-policy.deprecateddirectives.md) |  |
 

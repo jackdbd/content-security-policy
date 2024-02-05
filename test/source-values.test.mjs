@@ -1,3 +1,5 @@
+import assert from 'node:assert'
+import { describe, it } from 'node:test'
 import {
   cspSourceValuesScriptAttr,
   cspSourceValuesScriptElem,
@@ -21,7 +23,7 @@ describe('cspSourceValuesScriptAttr', () => {
       patterns: PATTERNS
     })
 
-    expect(arr.length).toBe(DIRECTIVES[directive].length)
+    assert.equal(arr.length, DIRECTIVES[directive].length)
   })
 
   it('computes the hash using the specified algorithm', async () => {
@@ -34,14 +36,14 @@ describe('cspSourceValuesScriptAttr', () => {
     })
 
     const hash_algorithm = DIRECTIVES[directive][2]
-    expect(arr[2]).toContain(hash_algorithm)
+    assert.match(arr[2], new RegExp(hash_algorithm))
 
     const hashes_256 = await hashesScriptSrcAttr({
       algorithm: hash_algorithm,
       patterns: PATTERNS
     })
 
-    expect(arr[2]).toBe(hashes_256[0])
+    assert.equal(arr[2], hashes_256[0])
   })
 })
 
@@ -55,7 +57,7 @@ describe('cspSourceValuesScriptElem', () => {
       patterns: PATTERNS
     })
 
-    expect(arr.length).toBe(DIRECTIVES[directive].length)
+    assert.equal(arr.length, DIRECTIVES[directive].length)
   })
 })
 
@@ -69,7 +71,7 @@ describe('cspSourceValuesStyleAttr', () => {
       patterns: PATTERNS
     })
 
-    expect(arr.length).toBe(DIRECTIVES[directive].length)
+    assert.equal(arr.length, DIRECTIVES[directive].length)
   })
 
   it('computes the hash using the specified algorithm', async () => {
@@ -82,14 +84,14 @@ describe('cspSourceValuesStyleAttr', () => {
     })
 
     const hash_algorithm = DIRECTIVES[directive][2]
-    expect(arr[2]).toContain(hash_algorithm)
+    assert.match(arr[2], new RegExp(hash_algorithm))
 
     const hashes_256 = await hashesStyleSrcAttr({
       algorithm: hash_algorithm,
       patterns: PATTERNS
     })
 
-    expect(arr[2]).toBe(hashes_256[0])
+    assert.equal(arr[2], hashes_256[0])
   })
 })
 
@@ -103,7 +105,7 @@ describe('cspSourceValuesStyleElem', () => {
       patterns: PATTERNS
     })
 
-    expect(arr.length).toBe(DIRECTIVES[directive].length)
+    assert.equal(arr.length, DIRECTIVES[directive].length)
   })
 
   it('computes the hash using the specified algorithm', async () => {
@@ -115,15 +117,15 @@ describe('cspSourceValuesStyleElem', () => {
       patterns: PATTERNS
     })
 
-    expect(arr[0]).toBe(DIRECTIVES[directive][0])
+    assert.equal(arr[0], DIRECTIVES[directive][0])
     const hash_algorithm = DIRECTIVES[directive][1]
-    expect(arr[1]).toContain(hash_algorithm)
+    assert.match(arr[1], new RegExp(hash_algorithm))
 
     const hashes_256 = await hashesStyleSrcElem({
       algorithm: hash_algorithm,
       patterns: PATTERNS
     })
 
-    expect(arr[1]).toBe(hashes_256[0])
+    assert.equal(arr[1], hashes_256[0])
   })
 })

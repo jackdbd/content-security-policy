@@ -62,8 +62,8 @@ const preset = 'conventionalcommits'
 const presetConfig = {
   types: [
     { type: 'chore', hidden: true },
+    { type: 'docs', section: 'Docs' },
     { type: 'feat', section: 'Features' },
-    { type: 'docs', hidden: true },
     { type: 'fix', section: 'Bug Fixes' },
     { type: 'perf', hidden: true, section: 'Performance Improvements' },
     { type: 'refactor', hidden: true },

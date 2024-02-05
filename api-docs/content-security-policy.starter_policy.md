@@ -4,7 +4,7 @@
 
 ## starter\_policy variable
 
-This is the starter policy described here: https://content-security-policy.com/
+Starter policy.
 
 **Signature:**
 

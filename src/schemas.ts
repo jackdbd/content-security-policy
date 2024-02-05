@@ -1,59 +1,80 @@
-import Joi from 'joi'
+import { z } from 'zod'
 
-// 2 is because top level domains have at least 2 characters
-const csp_host_source_with_no_protocol = Joi.string().pattern(
-  /^((?!https?).)+(.*\..{2,})$/,
-  {
-    name: 'host-with-no-protocol'
-  }
-)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isUnique = (items: any[]) => new Set(items).size === items.length
 
-const csp_host_source_with_protocol = Joi.string().pattern(/^https?:\/\/.*$/, {
-  name: 'host-with-protocol'
-})
+// I'm including a 2 in this regex because top level domains have at least 2 characters.
+export const csp_host_source_with_no_protocol = z
+  .string()
+  .regex(/^((?!https?).)+(.*\..{2,})$/, {
+    message: 'Invalid host with no protocol'
+  })
+  .describe('CSP host source value that does not specify a protocol')
 
-const csp_hash_source_to_compute = Joi.valid('sha256', 'sha384', 'sha512')
+export const csp_host_source_with_protocol = z
+  .string()
+  .regex(/^https?:\/\/.*$/, {
+    message: 'Invalid host with protocol'
+  })
+  .describe('CSP host source value that specify a protocol')
 
-const csp_hash_source = Joi.string().pattern(/^sha-(256|384|512).*$/, {
-  name: '<hash-algorithm>-<base64-value>'
-})
+export const csp_hash_source_to_compute = z.union([
+  z.literal('sha256'),
+  z.literal('sha384'),
+  z.literal('sha512')
+])
 
-const csp_nonce_source = Joi.string().pattern(/^nonce-.*$/, {
-  name: 'nonce-<base64-value>'
-})
+export const csp_hash_source = z
+  .string()
+  .regex(/^sha-(256|384|512).*$/, {
+    message: 'Invalid hash source'
+  })
+  .describe('CSP hash source value')
 
-export const csp_scheme_source = Joi.valid(
-  'http:',
-  'https:',
+const csp_nonce_source = z
+  .string()
+  .regex(/^nonce-.*$/, {
+    message: 'Invalid nonce source'
+  })
+  .describe('CSP nonce source value')
+
+export const csp_scheme_source = z.union([
+  z.literal('http:'),
+  z.literal('https:'),
   // data schemes are possible, but not recommended
-  'blob:',
-  'data:',
-  'filesystem:',
-  'mediastream:'
-)
+  z.literal('blob:'),
+  z.literal('data:'),
+  z.literal('filesystem:'),
+  z.literal('mediastream:')
+])
 
-// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/Sources#sources
-// const csp_source_value = Joi.string().min(1)
-const csp_source_value = Joi.alternatives().try(
-  csp_host_source_with_no_protocol,
-  csp_host_source_with_protocol,
-  csp_scheme_source,
-  csp_hash_source_to_compute,
-  csp_hash_source,
-  csp_nonce_source,
-  Joi.valid(
-    'none',
-    'report-sample',
-    'self',
-    'strict-dynamic',
-    'unsafe-eval',
-    'unsafe-hashes',
-    'unsafe-inline'
-  )
-)
+/**
+ * Content-Security-Policy source value.
+ *
+ * @see [developer.mozilla.org - Content-Security-Policy Sources](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/Sources#sources)
+ */
+export const csp_source_value = z
+  .union([
+    csp_host_source_with_no_protocol,
+    csp_host_source_with_protocol,
+    csp_scheme_source,
+    csp_hash_source_to_compute,
+    csp_hash_source,
+    csp_nonce_source,
+    z.union([
+      z.literal('none'),
+      z.literal('report-sample'),
+      z.literal('self'),
+      z.literal('strict-dynamic'),
+      z.literal('unsafe-eval'),
+      z.literal('unsafe-hashes'),
+      z.literal('unsafe-inline')
+    ])
+  ])
+  .describe('Content-Security-Policy source value')
 
 // https://joi.dev/api/?v=17.6.0#arrayuniquecomparator-options
-const hashAlgorithmComparator = (a: string, b: string) => {
+export const hashAlgorithmComparator = (a: string, b: string) => {
   if (a === 'sha256' && (b === 'sha384' || b === 'sha512')) {
     return true
   }
@@ -66,43 +87,63 @@ const hashAlgorithmComparator = (a: string, b: string) => {
   return false
 }
 
-export const csp_source_values = Joi.array()
-  .items(csp_source_value)
+export const csp_source_values = z
+  .array(csp_source_value)
   .min(1)
-  .unique()
-  .unique(hashAlgorithmComparator)
+  .refine(isUnique, {
+    message: 'Must be an array of Content-Security-Policy sources'
+  })
+
+// export const csp_source_values = Joi.array()
+//   .items(csp_source_value)
+//   .min(1)
+//   .unique()
+//   .unique(hashAlgorithmComparator)
 
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/report-to
-const groupname = Joi.string().min(1)
+export const groupname = z.string().min(1)
 
-const groupnames = Joi.array().items(groupname).min(1)
+export const groupnames = z.array(groupname).min(1)
 
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for
-const require_trusted_types_for_value = Joi.string().valid('script')
+export const require_trusted_types_for_value = z.literal('script')
 
-// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/sandbox
-const sandbox_value = Joi.string().valid(
-  'allow-downloads',
-  'allow-downloads-without-user-activation',
-  'allow-forms',
-  'allow-modals',
-  'allow-orientation-lock',
-  'allow-pointer-lock',
-  'allow-popups',
-  'allow-popups-to-escape-sandbox',
-  'allow-presentation',
-  'allow-same-origin',
-  'allow-scripts',
-  'allow-storage-access-by-user-activation',
-  'allow-top-navigation',
-  'allow-top-navigation-by-user-activation',
-  'allow-top-navigation-to-custom-protocol'
-)
+/**
+ * Value for the Content-Security-Policy `sandbox` directive.
+ *
+ * @see [developer.mozilla.org - Content-Security-Policy/sandbox](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/sandbox)
+ */
+export const sandbox_value = z
+  .union([
+    z.literal('allow-downloads'),
+    z.literal('allow-downloads-without-user-activation'),
+    z.literal('allow-forms'),
+    z.literal('allow-modals'),
+    z.literal('allow-orientation-lock'),
+    z.literal('allow-pointer-lock'),
+    z.literal('allow-popups'),
+    z.literal('allow-popups-to-escape-sandbox'),
+    z.literal('allow-presentation'),
+    z.literal('allow-same-origin'),
+    z.literal('allow-scripts'),
+    z.literal('allow-storage-access-by-user-activation'),
+    z.literal('allow-top-navigation'),
+    z.literal('allow-top-navigation-by-user-activation'),
+    z.literal('allow-top-navigation-to-custom-protocol')
+  ])
+  .describe('Value for the Content-Security-Policy `sandbox` directive.')
 
-// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/trusted-types
-const trusted_types_value = Joi.string().min(1)
+/**
+ * Value for the Content-Security-Policy `trusted-types` directive.
+ *
+ * @see [developer.mozilla.org - Content-Security-Policy/trusted-types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/trusted-types)
+ */
+export const trusted_types_value = z
+  .string()
+  .min(1)
+  .describe('Value for the Content-Security-Policy `trusted-types` directive.')
 
-export const directives = Joi.object({
+export const directives = z.object({
   'base-uri': csp_source_values,
   'child-src': csp_source_values,
   'connect-src': csp_source_values,
@@ -117,10 +158,8 @@ export const directives = Joi.object({
   'navigate-to': csp_source_values,
   'object-src': csp_source_values,
   'report-to': groupnames,
-  'require-trusted-types-for': Joi.array()
-    .items(require_trusted_types_for_value)
-    .min(1),
-  sandbox: Joi.array().items(sandbox_value).min(1),
+  'require-trusted-types-for': z.array(require_trusted_types_for_value).min(1),
+  sandbox: z.array(sandbox_value).min(1),
   'script-src': csp_source_values,
   'script-src-attr': csp_source_values,
   'script-src-elem': csp_source_values,
@@ -128,8 +167,8 @@ export const directives = Joi.object({
   'style-src': csp_source_values,
   'style-src-attr': csp_source_values,
   'style-src-elem': csp_source_values,
-  'trusted-types': Joi.array().items(trusted_types_value).min(1),
+  'trusted-types': z.array(trusted_types_value).min(1),
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests
-  'upgrade-insecure-requests': Joi.boolean(),
+  'upgrade-insecure-requests': z.boolean(),
   'worker-src': csp_source_values
 })

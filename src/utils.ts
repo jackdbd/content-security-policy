@@ -1,7 +1,8 @@
 import crypto from 'node:crypto'
-import makeDebug from 'debug'
+import defDebug from 'debug'
+import { DEBUG_PREFIX } from './constants.js'
 
-const debug = makeDebug('csp:utils')
+const debug = defDebug(`${DEBUG_PREFIX}:utils`)
 
 export const isBoolean = (val: any) => typeof val === 'boolean'
 
