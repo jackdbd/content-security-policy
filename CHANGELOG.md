@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2.1.0](https://github.com/jackdbd/content-security-policy/compare/v2.0.0...v2.1.0) (2024-02-05)
+
+
+### Features
+
+* migrate from Joi to Zod and from Jest to Node.js test runner ([2facb81](https://github.com/jackdbd/content-security-policy/commit/2facb81589e5590168f59a450a89ec194fd3f914))
+
 ## [2.0.0](https://github.com/jackdbd/content-security-policy/compare/v1.1.1...v2.0.0) (2023-07-11)
 
 
