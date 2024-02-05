@@ -1,6 +1,6 @@
 {
   "name": "@jackdbd/content-security-policy",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Write your Content-Security-Policy header in JavaScript, so you can have validation and automatic hashes.",
   "author": {
     "name": "Giacomo Debidda",

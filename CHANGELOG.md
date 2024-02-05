@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2.1.1](https://github.com/jackdbd/content-security-policy/compare/v2.1.0...v2.1.1) (2024-02-05)
+
+
+### Bug Fixes
+
+* make all CSP directive optional ([1ef52be](https://github.com/jackdbd/content-security-policy/commit/1ef52beaa1833fe34479c736e2924cf29cdc607d))
+
 ## [2.1.0](https://github.com/jackdbd/content-security-policy/compare/v2.0.0...v2.1.0) (2024-02-05)
 
 
