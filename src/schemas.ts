@@ -6,16 +6,12 @@ export const isUnique = (items: any[]) => new Set(items).size === items.length
 // I'm including a 2 in this regex because top level domains have at least 2 characters.
 export const csp_host_source_with_no_protocol = z
   .string()
-  .regex(/^((?!https?).)+(.*\..{2,})$/, {
-    message: 'Invalid host with no protocol'
-  })
+  .regex(/^((?!https?).)+(.*\..{2,})$/)
   .describe('CSP host source value that does not specify a protocol')
 
 export const csp_host_source_with_protocol = z
   .string()
-  .regex(/^https?:\/\/.*$/, {
-    message: 'Invalid host with protocol'
-  })
+  .regex(/^https?:\/\/.*$/)
   .describe('CSP host source value that specify a protocol')
 
 export const csp_hash_source_to_compute = z.union([
@@ -44,10 +40,11 @@ export const csp_scheme_source = z.union([
   z.literal('http:'),
   z.literal('https:'),
   // data schemes are possible, but not recommended
-  z.literal('blob:'),
-  z.literal('data:'),
-  z.literal('filesystem:'),
-  z.literal('mediastream:')
+  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/Sources#scheme-source
+  z.string().regex(/^blob:/),
+  z.string().regex(/^data:/),
+  z.string().regex(/^filesystem:/),
+  z.string().regex(/^mediastream:/)
 ])
 
 export type CSPSchemeSource = z.infer<typeof csp_scheme_source>
@@ -70,6 +67,7 @@ export const csp_source_value = csp_host_source_with_no_protocol
   .or(z.literal('unsafe-eval'))
   .or(z.literal('unsafe-hashes'))
   .or(z.literal('unsafe-inline'))
+  .or(z.literal('wasm-unsafe-eval'))
   .describe('Content-Security-Policy source value')
 
 export type CSPSourceValue = z.infer<typeof csp_source_value>
