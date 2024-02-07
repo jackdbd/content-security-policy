@@ -28,7 +28,7 @@ export type CSPHashSourceToCompute = z.infer<typeof csp_hash_source_to_compute>
 
 export const csp_hash_source = z
   .string()
-  .regex(/^sha-(256|384|512).*$/, {
+  .regex(/^sha(256|384|512)-.*$/, {
     message: 'Invalid hash source'
   })
   .describe('CSP hash source value')
@@ -57,24 +57,19 @@ export type CSPSchemeSource = z.infer<typeof csp_scheme_source>
  *
  * @see [developer.mozilla.org - Content-Security-Policy Sources](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/Sources#sources)
  */
-export const csp_source_value = z
-  .union([
-    csp_host_source_with_no_protocol,
-    csp_host_source_with_protocol,
-    csp_scheme_source,
-    csp_hash_source_to_compute,
-    csp_hash_source,
-    csp_nonce_source,
-    z.union([
-      z.literal('none'),
-      z.literal('report-sample'),
-      z.literal('self'),
-      z.literal('strict-dynamic'),
-      z.literal('unsafe-eval'),
-      z.literal('unsafe-hashes'),
-      z.literal('unsafe-inline')
-    ])
-  ])
+export const csp_source_value = csp_host_source_with_no_protocol
+  .or(csp_host_source_with_protocol)
+  .or(csp_scheme_source)
+  .or(csp_hash_source_to_compute)
+  .or(csp_hash_source)
+  .or(csp_nonce_source)
+  .or(z.literal('none'))
+  .or(z.literal('report-sample'))
+  .or(z.literal('self'))
+  .or(z.literal('strict-dynamic'))
+  .or(z.literal('unsafe-eval'))
+  .or(z.literal('unsafe-hashes'))
+  .or(z.literal('unsafe-inline'))
   .describe('Content-Security-Policy source value')
 
 export type CSPSourceValue = z.infer<typeof csp_source_value>
@@ -97,7 +92,7 @@ export const csp_source_values = z
   .array(csp_source_value)
   .min(1)
   .refine(isUnique, {
-    message: 'Must be an array of Content-Security-Policy sources'
+    message: 'Must be an array of unique Content-Security-Policy sources'
   })
 
 export type CSPSourceValues = z.infer<typeof csp_source_values>

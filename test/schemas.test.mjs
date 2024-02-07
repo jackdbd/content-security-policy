@@ -1,6 +1,11 @@
 import assert from 'node:assert'
 import { describe, it } from 'node:test'
-import { csp_scheme_source, csp_source_values } from '../lib/schemas.js'
+import {
+  csp_hash_source,
+  csp_scheme_source,
+  csp_source_value,
+  csp_source_values
+} from '../lib/schemas.js'
 
 describe('schemas', () => {
   describe('csp_scheme_source', () => {
@@ -27,6 +32,44 @@ describe('schemas', () => {
         assert.equal(res.error, undefined)
         assert.equal(res.data, scheme)
       })
+    })
+  })
+
+  describe('csp_hash_source', () => {
+    it('is valid for a sha256-* value', () => {
+      const expected = 'sha256-K8ITDHA9dtdAedwtkjos9BCZYSdFMrGkfxc9Ge+GJWI='
+      const res = csp_hash_source.safeParse(expected)
+
+      assert.equal(res.error, undefined)
+      assert.equal(res.data, expected)
+    })
+
+    it('is valid for a sha512-* value', () => {
+      const expected =
+        'sha512-db9b1cd3262dee37756a09b9064973589847caa8e53d31a9d142ea2701b1b28abd97838bb9a27068ba305dc8d04a45a1fcf079de54d607666996b3cc54f6b67c'
+      const res = csp_hash_source.safeParse(expected)
+
+      assert.equal(res.error, undefined)
+      assert.equal(res.data, expected)
+    })
+  })
+
+  describe('csp_source_value', () => {
+    it('is valid for a sha256-* value', () => {
+      const expected = 'sha256-K8ITDHA9dtdAedwtkjos9BCZYSdFMrGkfxc9Ge+GJWI='
+      const res = csp_source_value.safeParse(expected)
+
+      assert.equal(res.error, undefined)
+      assert.equal(res.data, expected)
+    })
+
+    it('is valid for a sha512-* value', () => {
+      const expected =
+        'sha512-db9b1cd3262dee37756a09b9064973589847caa8e53d31a9d142ea2701b1b28abd97838bb9a27068ba305dc8d04a45a1fcf079de54d607666996b3cc54f6b67c'
+      const res = csp_hash_source.safeParse(expected)
+
+      assert.equal(res.error, undefined)
+      assert.equal(res.data, expected)
     })
   })
 
