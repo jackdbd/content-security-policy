@@ -1,6 +1,6 @@
 {
   "name": "@jackdbd/content-security-policy",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Write your Content-Security-Policy header in JavaScript, so you can have validation and automatic hashes.",
   "author": {
     "name": "Giacomo Debidda",
@@ -101,8 +101,8 @@
     "@commitlint/config-conventional": "^18.6.0",
     "@jackdbd/checks": "^2.0.0",
     "@jackdbd/zod-to-doc": "^1.0.7",
-    "@microsoft/api-documenter": "^7.23.20",
-    "@microsoft/api-extractor": "^7.39.4",
+    "@microsoft/api-documenter": "^7.23.22",
+    "@microsoft/api-extractor": "^7.40.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^11.1.0",
     "@semantic-release/exec": "^6.0.3",

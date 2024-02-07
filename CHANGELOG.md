@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2.1.2](https://github.com/jackdbd/content-security-policy/compare/v2.1.1...v2.1.2) (2024-02-07)
+
+
+### Bug Fixes
+
+* update incorrect regex for CSP hash source value ([05db3fb](https://github.com/jackdbd/content-security-policy/commit/05db3fbda9852384b9a5f0ed56388b180eeb2600))
+
 ## [2.1.1](https://github.com/jackdbd/content-security-policy/compare/v2.1.0...v2.1.1) (2024-02-05)
 
 
