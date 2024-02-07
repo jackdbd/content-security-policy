@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2.1.3](https://github.com/jackdbd/content-security-policy/compare/v2.1.2...v2.1.3) (2024-02-07)
+
+
+### Bug Fixes
+
+* regexes for data schemes ([5dadc3c](https://github.com/jackdbd/content-security-policy/commit/5dadc3c4218fb6139f06a78079412297b81cf236))
+
 ## [2.1.2](https://github.com/jackdbd/content-security-policy/compare/v2.1.1...v2.1.2) (2024-02-07)
 
 
