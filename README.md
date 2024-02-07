@@ -1,6 +1,7 @@
 # content-security-policy
 
 [![npm package badge](https://badge.fury.io/js/@jackdbd%2Fcontent-security-policy.svg)](https://badge.fury.io/js/@jackdbd%2Fcontent-security-policy)
+[![install size badge](https://packagephobia.com/badge?p=@jackdbd/content-security-policy)](https://packagephobia.com/result?p=@jackdbd/content-security-policy)
 [![CI GitHub workflow badge](https://github.com/jackdbd/content-security-policy/actions/workflows/ci.yaml/badge.svg)](https://github.com/jackdbd/content-security-policy/actions/workflows/ci.yaml)
 [![CodeCov badge](https://codecov.io/gh/jackdbd/content-security-policy/graph/badge.svg?token=9jddzo5Dt3)](https://codecov.io/gh/jackdbd/content-security-policy)
 [![CodeFactor badge](https://www.codefactor.io/repository/github/jackdbd/content-security-policy/badge)](https://www.codefactor.io/repository/github/jackdbd/content-security-policy)
@@ -96,35 +97,6 @@ The `cspJSON`, `cspHeader` and `cspDirectives` functions require an object that 
 | --- | --- |
 | `directives` | [Directives](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives) for the Content-Security-Policy (or Content-Security-Policy-Report-Only) header. |
 | `patterns` | glob patterns for your `.html` files. |
-
-<!-- | Key | Default | Description |
-|---|---|---|
-| `base-uri` | `undefined` |  |
-| `child-src` | `undefined` |  |
-| `connect-src` | `undefined` |  |
-| `default-src` | `undefined` |  |
-| `font-src` | `undefined` |  |
-| `form-action` | `undefined` |  |
-| `frame-ancestors` | `undefined` |  |
-| `frame-src` | `undefined` |  |
-| `img-src` | `undefined` |  |
-| `manifest-src` | `undefined` |  |
-| `media-src` | `undefined` |  |
-| `navigate-to` | `undefined` |  |
-| `object-src` | `undefined` |  |
-| `report-to` | `undefined` |  |
-| `require-trusted-types-for` | `undefined` |  |
-| `sandbox` | `undefined` |  |
-| `script-src` | `undefined` |  |
-| `script-src-attr` | `undefined` |  |
-| `script-src-elem` | `undefined` |  |
-| `source-values` | `undefined` |  |
-| `style-src` | `undefined` |  |
-| `style-src-attr` | `undefined` |  |
-| `style-src-elem` | `undefined` |  |
-| `trusted-types` | `undefined` |  |
-| `upgrade-insecure-requests` | `undefined` |  |
-| `worker-src` | `undefined` |  | -->
 
 ## Docs
 

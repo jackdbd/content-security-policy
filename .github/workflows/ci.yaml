@@ -34,7 +34,7 @@ jobs:
         # 2. Active LTS
         # 3. Current (i.e. the latest Node.js version available)
         # https://nodejs.org/en/about/previous-releases
-        node: [ lts/Iron]
+        node: [lts/Iron]
         # node: [lts/Hydrogen, lts/Iron, current]
     steps:
       - name: 🛎️ Checkout repo
@@ -61,8 +61,8 @@ jobs:
         continue-on-error: true
         run: npm audit --audit-level moderate
 
-      - name: 🔨 📖 Build npm package and docs (Linux)
-        run: npm run build
+      - name: 🔨 Build TypeScript files
+        run: npm run build:lib
 
       - name: 🔍 Test on Linux
         run: npm run test:ci
@@ -77,6 +77,8 @@ jobs:
           fail_ci_if_error: false
           files: ./lcov.info
           verbose: true
+
+      - run: npx publint run .
 
       - name: 📦 Size report
         if: ${{ github.event_name == 'pull_request' && matrix.os == 'ubuntu-latest' }}
@@ -98,6 +100,9 @@ jobs:
           # This github token must allow to push to this GitHub repository.
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_BOT_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.SEMANTIC_RELEASE_BOT_NPM_TOKEN }}
+          TELEGRAM_BOT_ID: ${{ secrets.TELEGRAM_BOT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ fromJSON(secrets.TELEGRAM).chat_id }}
         run: npx semantic-release --ci
 
   macos-build-test:
@@ -108,7 +113,7 @@ jobs:
       max-parallel: 1
       matrix:
         os: [macos-latest]
-        node: [ lts/Iron]
+        node: [lts/Iron]
     steps:
       - name: 🛎️ Checkout repo
         uses: actions/checkout@v4
@@ -136,7 +141,7 @@ jobs:
       max-parallel: 1
       matrix:
         os: [windows-latest]
-        node: [ lts/Iron]
+        node: [lts/Iron]
     steps:
       - name: 🛎️ Checkout repo
         uses: actions/checkout@v4

@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import defDebug from 'debug'
-import { markdownTableFromZodSchema } from '@jackdbd/zod-to-doc/lib'
+import { markdownTableFromZodSchema } from '@jackdbd/zod-to-doc'
 import {
   image,
   licenseLink,
@@ -55,13 +55,13 @@ const main = async ({ current_year, project_started_in_year }: Config) => {
           // `https://www.npmjs.com/package/${npm_scope}/${unscoped_pkg_name}`
         )
 
-        // const install_size = link(
-        //   image(
-        //     `https://packagephobia.com/badge?p=${npm_scope}/${unscoped_pkg_name}`,
-        //     'install size badge'
-        //   ),
-        //   `https://packagephobia.com/result?p=${npm_scope}/${unscoped_pkg_name}`
-        // )
+        const install_size = link(
+          image(
+            `https://packagephobia.com/badge?p=${npm_scope}/${unscoped_pkg_name}`,
+            'install size badge'
+          ),
+          `https://packagephobia.com/result?p=${npm_scope}/${unscoped_pkg_name}`
+        )
 
         const codefactor = link(
           image(
@@ -105,6 +105,7 @@ const main = async ({ current_year, project_started_in_year }: Config) => {
 
         return [
           npm_package,
+          install_size,
           ci_workflow,
           codecov,
           codefactor,

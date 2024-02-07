@@ -84,8 +84,6 @@ The `cspJSON`, `cspHeader` and `cspDirectives` functions require an object that 
 | `directives` | [Directives](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives) for the Content-Security-Policy (or Content-Security-Policy-Report-Only) header. |
 | `patterns` | glob patterns for your `.html` files. |
 
-<!-- {{csp.directives}} -->
-
 {{pkg.docs}}
 
 {{pkg.deps}}
