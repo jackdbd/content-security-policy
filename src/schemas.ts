@@ -157,21 +157,54 @@ export const src_keys = z.union([
 
 export type SrcKey = z.infer<typeof src_keys>
 
+/**
+ * @see [Deprecated directives - MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#deprecated_directives)
+ */
 export const deprecated_directive_key = z.union([
   z.literal('block-all-mixed-content'),
   z.literal('plugin-types'),
   z.literal('prefetch-src'),
   z.literal('referrer'),
   z.literal('report-uri'),
+  // https://github.com/w3c/webappsec-subresource-integrity/pull/82
   z.literal('require-sri-for')
 ])
 
 export type DeprecatedDirectiveKey = z.infer<typeof deprecated_directive_key>
 
-const deprecated_directive_set = z.set(deprecated_directive_key)
+export const deprecated_directive_set = z.set(deprecated_directive_key)
 
 export type DeprecatedDirectiveSet = z.infer<typeof deprecated_directive_set>
 
+export const experimental_directive_key = z.union([
+  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/fenced-frame-src
+  z.literal('fenced-frame-src'),
+  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for
+  z.literal('require-trusted-types-for'),
+  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/trusted-types
+  z.literal('trusted-types'),
+])
+
+export type ExperimentalDirectiveKey = z.infer<typeof experimental_directive_key>
+
+export const experimental_directive_set = z.set(experimental_directive_key)
+
+export type ExperimentalDirectiveSet = z.infer<typeof experimental_directive_set>
+
+export const experimental_directives = z.object({
+  'fenced-frame-src': csp_source_values.optional(),
+  'require-trusted-types-for': z
+    .array(require_trusted_types_for_value)
+    .min(1)
+    .optional(),
+  'trusted-types': z.array(trusted_types_value).min(1).optional(),
+})
+
+export type ExperimentalDirectives = z.input<typeof experimental_directives>
+
+/**
+ * @see [Directives - MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives)
+ */
 export const supported_directive_key = z.union([
   z.literal('base-uri'),
   z.literal('child-src'),
@@ -187,7 +220,6 @@ export const supported_directive_key = z.union([
   z.literal('navigate-to'),
   z.literal('object-src'),
   z.literal('report-to'),
-  z.literal('require-trusted-types-for'),
   z.literal('sandbox'),
   z.literal('script-src'),
   z.literal('script-src-attr'),
@@ -196,14 +228,13 @@ export const supported_directive_key = z.union([
   z.literal('style-src'),
   z.literal('style-src-attr'),
   z.literal('style-src-elem'),
-  z.literal('trusted-types'),
   z.literal('upgrade-insecure-requests'),
   z.literal('worker-src')
 ])
 
 export type SupportedDirectiveKey = z.infer<typeof supported_directive_key>
 
-const supported_directive_set = z.set(supported_directive_key)
+export const supported_directive_set = z.set(supported_directive_key)
 
 export type SupportedDirectiveSet = z.infer<typeof supported_directive_set>
 
@@ -212,6 +243,7 @@ export const directives = z.object({
   'child-src': csp_source_values.optional(),
   'connect-src': csp_source_values.optional(),
   'default-src': csp_source_values.optional(),
+  // 'fenced-frame-src': csp_source_values.optional(),
   'font-src': csp_source_values.optional(),
   'form-action': csp_source_values.optional(),
   'frame-ancestors': csp_source_values.optional(),
@@ -222,10 +254,10 @@ export const directives = z.object({
   'navigate-to': csp_source_values.optional(),
   'object-src': csp_source_values.optional(),
   'report-to': groupnames.optional(),
-  'require-trusted-types-for': z
-    .array(require_trusted_types_for_value)
-    .min(1)
-    .optional(),
+  // 'require-trusted-types-for': z
+  //   .array(require_trusted_types_for_value)
+  //   .min(1)
+  //   .optional(),
   sandbox: z.array(sandbox_value).min(1).optional(),
   'script-src': csp_source_values.optional(),
   'script-src-attr': csp_source_values.optional(),
@@ -234,7 +266,7 @@ export const directives = z.object({
   'style-src': csp_source_values.optional(),
   'style-src-attr': csp_source_values.optional(),
   'style-src-elem': csp_source_values.optional(),
-  'trusted-types': z.array(trusted_types_value).min(1).optional(),
+  // 'trusted-types': z.array(trusted_types_value).min(1).optional(),
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests
   'upgrade-insecure-requests': z.boolean().optional(),
   'worker-src': csp_source_values.optional()

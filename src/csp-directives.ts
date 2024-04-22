@@ -101,30 +101,3 @@ export const cspDirectives = async ({ directives, patterns }: Config) => {
 
   return arr
 }
-
-/**
- * @public
- */
-export const cspHeader = async ({ directives, patterns }: Config) => {
-  const arr = await cspDirectives({
-    directives,
-    patterns
-  })
-
-  return arr.join('; ')
-}
-
-/**
- * @public
- */
-export const cspJSON = async ({ directives, patterns }: Config) => {
-  const arr = await cspDirectives({
-    directives,
-    patterns
-  })
-
-  return arr.reduce((acc, cv) => {
-    const [k, ...rest] = cv.split(' ')
-    return { ...acc, [k]: rest }
-  }, {})
-}

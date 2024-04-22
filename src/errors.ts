@@ -55,7 +55,7 @@ export const validationErrorOrWarnings = ({
       }
     }
   } else {
-    // This is an error about something else in the plugin configuration.
+    // This is an error about something else.
     // TODO: Zod errors do not have a `context` property. This code was written for Joi.
     if (detail.context && detail.context.message) {
       return {

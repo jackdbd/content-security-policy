@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "baseUrl": ".",
     "declaration": true,
@@ -8,9 +9,9 @@
     "importHelpers": false,
     "incremental": true,
     "isolatedModules": true,
-    "lib": ["ES2020"],
-    "module": "es2020",
-    "moduleResolution": "node",
+    "lib": ["ESNext"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -23,7 +24,7 @@
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "es2020",
+    "target": "ES2020",
     // https://www.typescriptlang.org/tsconfig#typeRoots
     "typeRoots": ["./node_modules/@types", "./custom-types"]
   },

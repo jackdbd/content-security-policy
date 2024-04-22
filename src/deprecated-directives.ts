@@ -9,7 +9,7 @@ export type DeprecatedDirectives = {
 }
 
 /**
- * @see [Deprected directives - MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#deprecated_directives)
+ * @see [Deprecated directives - MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#deprecated_directives)
  */
 export const deprecatedDirectives: DeprecatedDirectives = {
   'block-all-mixed-content': {

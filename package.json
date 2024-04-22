@@ -70,8 +70,10 @@
     "build:lib": "tsc -p tsconfig.json",
     "build:lib:watch": "tsc -p tsconfig.json --watch",
     "clean": "rm -rf .ae/doc/ .ae/temp/ coverage/ lib/ tsconfig.tsbuildinfo",
-    "demo:policy:custom": "tsm ./scripts/demo.ts --policy custom --format json",
+    "demo": "run-s --print-label 'demo:policy:starter' 'demo:policy:recommended' 'demo:policy:custom'",
+    "demo:policy:custom": "tsm ./scripts/demo.ts --policy custom --format object",
     "demo:policy:recommended": "tsm ./scripts/demo.ts --policy recommeded --format directives",
+    "demo:policy:starter": "tsm ./scripts/demo.ts --policy starter --format header",
     "deps": "taze",
     "dev": "run-p build:lib:watch test:watch",
     "docs": "run-s 'docs:ae' 'docs:ad' 'docs:typedoc' --print-label",
@@ -85,10 +87,11 @@
     "publint": "publint run .",
     "readme": "tsm ./scripts/readme.ts",
     "release:dry": "npx semantic-release --no-ci --debug --dry-run",
+    "serve:docs": "serve docs/ -p 3333", 
     "size": "pkg-size ./lib --sort-by=brotli --ignore-files {*.d.ts,*.map}",
-    "test": "node --test --experimental-test-coverage",
+    "test": "DEBUG='csp:csp-directives' node --test --experimental-test-coverage",
     "test:ci": "node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info",
-    "test:watch": "node --test --watch"
+    "test:watch": "DEBUG='' node --test --watch"
   },
   "dependencies": {
     "debug": "^4.3.4",
@@ -109,7 +112,8 @@
     "@semantic-release/git": "latest",
     "@semantic-release/release-notes-generator": "latest",
     "@thi.ng/transclude": "^0.1.87",
-    "@types/debug": "^4.1.12",
+    "@types/debug": "latest",
+    "@types/yargs": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "conventional-changelog-conventionalcommits": "latest",
@@ -124,10 +128,12 @@
     "publint": "latest",
     "semantic-release": "^23.0.8",
     "semantic-release-telegram": "^1.6.2",
+    "serve": "latest",
     "simple-git-hooks": "^2.11.1",
     "taze": "latest",
     "tsm": "^2.3.0",
     "typedoc": "^0.25.13",
+    "yargs": "latest",
     "zx": "latest"
   },
   "simple-git-hooks": {

@@ -12,8 +12,59 @@ export interface DeprecatedDirectiveValue
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [hrefs](./content-security-policy.deprecateddirectivevalue.hrefs.md) |  | string\[\] |  |
-|  [whatToDoInstead](./content-security-policy.deprecateddirectivevalue.whattodoinstead.md) |  | string |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[hrefs](./content-security-policy.deprecateddirectivevalue.hrefs.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[whatToDoInstead](./content-security-policy.deprecateddirectivevalue.whattodoinstead.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

@@ -1,8 +1,7 @@
 import assert from 'node:assert'
 import { describe, it } from 'node:test'
-import { DIRECTIVES, PATTERNS } from './constants.mjs'
-import { cspDirectives, cspHeader, cspJSON } from '../lib/csp-directives.js'
-import { isObject, isString } from '../lib/utils.js'
+import { DIRECTIVES, DEPRECATED_DIRECTIVES,EXPERIMENTAL_DIRECTIVES, PATTERNS } from './constants.mjs'
+import { cspDirectives } from '../lib/csp-directives.js'
 
 describe('cspDirectives', () => {
   it('is an array', async () => {
@@ -13,28 +12,22 @@ describe('cspDirectives', () => {
     assert.notEqual(arr, undefined)
     assert.equal(arr.length, Object.keys(directives).length)
   })
-})
 
-describe('cspHeader', () => {
-  it('is a string', async () => {
-    const header = await cspHeader({
-      directives: DIRECTIVES,
-      patterns: PATTERNS
-    })
+  it('allows to specify deprecated directives', async () => {
+    const directives = DEPRECATED_DIRECTIVES
+    const patterns = PATTERNS
+    const arr = await cspDirectives({ directives, patterns })
 
-    assert.notEqual(header, undefined)
-    assert.equal(isString(header), true)
+    assert.notEqual(arr, undefined)
+    assert.equal(arr.length, Object.keys(directives).length)
   })
-})
 
-describe('cspJSON', () => {
-  it('is a JS object', async () => {
-    const json = await cspJSON({
-      directives: DIRECTIVES,
-      patterns: PATTERNS
-    })
+  it('allows to specify experimental directives', async () => {
+    const directives = EXPERIMENTAL_DIRECTIVES
+     const patterns = PATTERNS
+     const arr = await cspDirectives({ directives, patterns })
 
-    assert.notEqual(json, undefined)
-    assert.equal(isObject(json), true)
+     assert.notEqual(arr, undefined)
+     assert.equal(arr.length, Object.keys(directives).length)
   })
 })

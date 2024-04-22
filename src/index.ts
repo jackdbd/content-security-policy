@@ -3,12 +3,7 @@
  *
  * @packageDocumentation
  */
-export {
-  cspDirectives,
-  cspHeader,
-  cspJSON,
-  type Config
-} from './csp-directives.js'
+export { cspDirectives, type Config } from './csp-directives.js'
 
 export {
   type DeprecatedDirectiveValue,
@@ -19,6 +14,8 @@ export {
   validationErrorOrWarnings,
   type Config as ValidationErrorOrWarningsConfig
 } from './errors.js'
+
+export { cspHeader, cspObj } from './outputs.js'
 
 export { starter_policy, recommended_policy } from './policies.js'
 

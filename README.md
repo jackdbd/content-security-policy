@@ -22,20 +22,20 @@ Write your Content-Security-Policy header in JavaScript, so you can have validat
 
 ## About
 
-A [strict Content-Security-Policy](https://web.dev/strict-csp/) is probably the single most important line of defense against Cross-Site Scripting (XSS) and data injection attacks.
+A [strict Content-Security-Policy](https://web.dev/articles/strict-csp) is probably the single most important line of defense against Cross-Site Scripting (XSS) attacks.
 
-However, writing a good CSP header by hand is a pain. Here is why:
+Unfortunately, writing a good CSP header by hand is a pain. Here is why:
 
 - You might write an invalid CSP directive (e.g. typos, incorrect values).
 - You might write a CSP directive which is supported in one browser, but not in another one.
 - You might want to allow some inline CSS/JS in your HTML page, but you neither:
   - want to compromise security by using [unsafe-inline](https://content-security-policy.com/unsafe-inline/), nor...
-  - want to compute the cryptographic hash of each snippet of CSS/JS that you inlined and whitelisting them by hand.
+  - want to compute the cryptographic hash of each snippet of CSS/JS that you inlined and whitelist them by hand.
 
 Also, you should:
 
 - keep your CSP quite visible in your codebase, since it's such an important configuration for your website/app.
-- generate your CSP in multiple format (JSON, JS array, plain text), so other tools can easily consume it.
+- generate your CSP in multiple format (JS object literal, JS array, plain text), so other tools can easily consume it.
 
 This package validates your Content-Security-Policy [directives](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives) and computes a cryptographic hash (SHA-256, SHA-384 or SHA-512) for each snippet of CSS/JS that you inline in your HTML file.
 
@@ -55,14 +55,14 @@ Write something like this in your build script:
 
 ```js
 import path from 'node:path'
-// pick the format you prefer: object, header (single string), directives (N strings)
+// pick the format you prefer: JS object literal, header (single string), directives (N strings)
 import {
-  cspJSON,
+  cspObj,
   cspHeader,
   cspDirectives
 } from '@jackdbd/content-security-policy'
 
-// the Content-Security-Policy header is made of directives.
+// The Content-Security-Policy header is made of directives.
 // If you don't know where to start, use one of the following policies:
 import {
   starter_policy,
@@ -76,8 +76,8 @@ const patterns = [
   path.join('_site', '**/*.html')
 ]
 
-const obj = await cspJSON({ directives, patterns })
-console.log(`Content-Security-Policy (as Object)`)
+const obj = await cspObj({ directives, patterns })
+console.log(`Content-Security-Policy (as JS object literal)`)
 console.log(obj)
 
 const header = await cspHeader({ directives, patterns })
@@ -91,7 +91,7 @@ console.log(strings)
 
 ## Configuration
 
-The `cspJSON`, `cspHeader` and `cspDirectives` functions require an object that contains `directives` and `patterns`.
+The `cspObj`, `cspHeader` and `cspDirectives` functions require an object that contains `directives` and `patterns`.
 
 | Parameter | Explanation |
 | --- | --- |
