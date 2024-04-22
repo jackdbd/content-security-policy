@@ -113,9 +113,9 @@ The `cspJSON`, `cspHeader` and `cspDirectives` functions require an object that 
 | Package | Version |
 |---|---|
 | [debug](https://www.npmjs.com/package/debug) | `^4.3.4` |
-| [globby](https://www.npmjs.com/package/globby) | `^14.0.0` |
+| [globby](https://www.npmjs.com/package/globby) | `^14.0.1` |
 | [himalaya](https://www.npmjs.com/package/himalaya) | `^1.1.0` |
-| [zod](https://www.npmjs.com/package/zod) | `^3.22.4` |
+| [zod](https://www.npmjs.com/package/zod) | `^3.23.0` |
 
 This project is tested on Node.js >=14.21.3.
 
