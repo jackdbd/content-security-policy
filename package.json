@@ -1,6 +1,6 @@
 {
   "name": "@jackdbd/content-security-policy",
-  "version": "2.1.3",
+  "version": "3.0.0-canary.1",
   "description": "Write your Content-Security-Policy header in JavaScript, so you can have validation and automatic hashes.",
   "author": {
     "name": "Giacomo Debidda",
@@ -87,7 +87,7 @@
     "publint": "publint run .",
     "readme": "tsm ./scripts/readme.ts",
     "release:dry": "npx semantic-release --no-ci --debug --dry-run",
-    "serve:docs": "serve docs/ -p 3333", 
+    "serve:docs": "serve docs/ -p 3333",
     "size": "pkg-size ./lib --sort-by=brotli --ignore-files {*.d.ts,*.map}",
     "test": "DEBUG='csp:csp-directives' node --test --experimental-test-coverage",
     "test:ci": "node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info",
@@ -134,7 +134,7 @@
     "tsm": "^2.3.0",
     "typedoc": "^0.25.13",
     "yargs": "latest",
-    "zx": "latest"
+    "zx": "^8.0.2"
   },
   "simple-git-hooks": {
     "pre-push": "npx commitlint --config ./config/commitlint.cjs --to HEAD"
