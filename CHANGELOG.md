@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [3.0.0](https://github.com/jackdbd/content-security-policy/compare/v2.1.3...v3.0.0) (2024-04-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename cspJSON to cspObj
+
+### Features
+
+* rename cspJSON to cspObj ([962d531](https://github.com/jackdbd/content-security-policy/commit/962d531fa3d0570c2de0b00db59b586439035937))
+
 ## [3.0.0-canary.1](https://github.com/jackdbd/content-security-policy/compare/v2.1.3...v3.0.0-canary.1) (2024-04-22)
 
 
