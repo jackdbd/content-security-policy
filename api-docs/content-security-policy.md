@@ -76,16 +76,6 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[Config](./content-security-policy.config.md)
-
-
-</td><td>
-
-
-
-</td></tr>
-<tr><td>
-
 [DeprecatedDirectiveValue](./content-security-policy.deprecateddirectivevalue.md)
 
 
@@ -120,7 +110,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[deprecated\_directive\_key](./content-security-policy.deprecated_directive_key.md)
+[deprecated\_directive](./content-security-policy.deprecated_directive.md)
 
 
 </td><td>
@@ -130,6 +120,15 @@ Description
 <tr><td>
 
 [directives](./content-security-policy.directives.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[options](./content-security-policy.options.md)
 
 
 </td><td>
@@ -175,7 +174,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[DeprecatedDirectiveKey](./content-security-policy.deprecateddirectivekey.md)
+[DeprecatedDirective](./content-security-policy.deprecateddirective.md)
 
 
 </td><td>
@@ -197,6 +196,16 @@ Description
 
 
 </td><td>
+
+
+</td></tr>
+<tr><td>
+
+[Options](./content-security-policy.options.md)
+
+
+</td><td>
+
 
 
 </td></tr>

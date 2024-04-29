@@ -1,16 +1,16 @@
 import assert from 'node:assert'
 import { describe, it } from 'node:test'
 import {
-  csp_hash_source,
-  csp_scheme_source,
-  csp_source_value,
-  csp_source_values
-} from '../lib/schemas.js'
+  hash_source,
+  scheme_source,
+  source_value,
+  source_values
+} from '../lib/schemas/sources.js'
 
 describe('schemas', () => {
-  describe('csp_scheme_source', () => {
+  describe('scheme_source', () => {
     it('is not valid for `foo`', () => {
-      const res = csp_scheme_source.safeParse('foo')
+      const res = scheme_source.safeParse('foo')
 
       assert.notEqual(res.error, undefined)
       assert.match(res.error.message, /Invalid/)
@@ -27,7 +27,7 @@ describe('schemas', () => {
       ]
 
       schemes.forEach((scheme) => {
-        const res = csp_scheme_source.safeParse(scheme)
+        const res = scheme_source.safeParse(scheme)
 
         assert.equal(res.error, undefined)
         assert.equal(res.data, scheme)
@@ -35,10 +35,10 @@ describe('schemas', () => {
     })
   })
 
-  describe('csp_hash_source', () => {
+  describe('hash_source', () => {
     it('is valid for a sha256-* value', () => {
       const expected = 'sha256-K8ITDHA9dtdAedwtkjos9BCZYSdFMrGkfxc9Ge+GJWI='
-      const res = csp_hash_source.safeParse(expected)
+      const res = hash_source.safeParse(expected)
 
       assert.equal(res.error, undefined)
       assert.equal(res.data, expected)
@@ -47,14 +47,14 @@ describe('schemas', () => {
     it('is valid for a sha512-* value', () => {
       const expected =
         'sha512-db9b1cd3262dee37756a09b9064973589847caa8e53d31a9d142ea2701b1b28abd97838bb9a27068ba305dc8d04a45a1fcf079de54d607666996b3cc54f6b67c'
-      const res = csp_hash_source.safeParse(expected)
+      const res = hash_source.safeParse(expected)
 
       assert.equal(res.error, undefined)
       assert.equal(res.data, expected)
     })
   })
 
-  describe('csp_source_value', () => {
+  describe('source_value', () => {
     it('is valid for any "special" CSP source value', () => {
       const sources = [
         'none',
@@ -68,7 +68,7 @@ describe('schemas', () => {
       ]
 
       sources.forEach((source) => {
-        const res = csp_source_value.safeParse(source)
+        const res = source_value.safeParse(source)
 
         assert.equal(res.error, undefined)
         assert.equal(res.data, source)
@@ -86,7 +86,7 @@ describe('schemas', () => {
       ]
 
       sources.forEach((source) => {
-        const res = csp_source_value.safeParse(source)
+        const res = source_value.safeParse(source)
 
         assert.equal(res.error, undefined)
         assert.equal(res.data, source)
@@ -95,7 +95,7 @@ describe('schemas', () => {
 
     it('is valid for a sha256-* value', () => {
       const expected = 'sha256-K8ITDHA9dtdAedwtkjos9BCZYSdFMrGkfxc9Ge+GJWI='
-      const res = csp_source_value.safeParse(expected)
+      const res = source_value.safeParse(expected)
 
       assert.equal(res.error, undefined)
       assert.equal(res.data, expected)
@@ -104,34 +104,34 @@ describe('schemas', () => {
     it('is valid for a sha512-* value', () => {
       const expected =
         'sha512-db9b1cd3262dee37756a09b9064973589847caa8e53d31a9d142ea2701b1b28abd97838bb9a27068ba305dc8d04a45a1fcf079de54d607666996b3cc54f6b67c'
-      const res = csp_hash_source.safeParse(expected)
+      const res = hash_source.safeParse(expected)
 
       assert.equal(res.error, undefined)
       assert.equal(res.data, expected)
     })
   })
 
-  describe('csp_source_values', () => {
+  describe('source_values', () => {
     it('must contain at least one item', () => {
-      const res = csp_source_values.safeParse([])
+      const res = source_values.safeParse([])
 
       assert.notEqual(res.error, undefined)
       assert.match(res.error.message, /at least 1/)
     })
 
     it('is valid for each one of the supported CSP source values', () => {
-      const source_values = [
+      const values = [
         ['self'],
         ['unsafe-eval'],
         ['unsafe-hashes'],
         ['self', 'unsafe-inline']
       ]
 
-      source_values.forEach((source_value) => {
-        const res = csp_source_values.safeParse(source_value)
+      values.forEach((src_val) => {
+        const res = source_values.safeParse(src_val)
 
         assert.equal(res.error, undefined)
-        assert.equal(JSON.stringify(res.data), JSON.stringify(source_value))
+        assert.equal(JSON.stringify(res.data), JSON.stringify(src_val))
       })
     })
   })

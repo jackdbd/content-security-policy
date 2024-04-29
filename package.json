@@ -47,8 +47,8 @@
       "import": "./lib/policies.js"
     },
     "./schemas": {
-      "types": "./lib/schemas.d.ts",
-      "import": "./lib/schemas.js"
+      "types": "./lib/schemas/index.d.ts",
+      "import": "./lib/schemas/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -89,29 +89,30 @@
     "release:dry": "npx semantic-release --no-ci --debug --dry-run",
     "serve:docs": "serve docs/ -p 3333",
     "size": "pkg-size ./lib --sort-by=brotli --ignore-files {*.d.ts,*.map}",
-    "test": "DEBUG='csp:csp-directives' node --test --experimental-test-coverage",
-    "test:ci": "node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info",
+    "test": "DEBUG='' node --test --experimental-test-coverage",
+    "test:ci": "node --test --experimental-test-coverage --test-reporter=@reporters/github --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=lcov.info",
     "test:watch": "DEBUG='' node --test --watch"
   },
   "dependencies": {
     "debug": "^4.3.4",
     "globby": "^14.0.1",
     "himalaya": "^1.1.0",
-    "zod": "^3.23.0"
+    "zod": "^3.23.4"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@jackdbd/checks": "^2.0.0",
-    "@jackdbd/zod-to-doc": "^1.0.7",
+    "@jackdbd/zod-to-doc": "^1.1.1",
     "@microsoft/api-documenter": "^7.24.2",
     "@microsoft/api-extractor": "^7.43.1",
+    "@reporters/github": "^1.7.0",
     "@semantic-release/changelog": "latest",
     "@semantic-release/commit-analyzer": "latest",
     "@semantic-release/exec": "latest",
     "@semantic-release/git": "latest",
     "@semantic-release/release-notes-generator": "latest",
-    "@thi.ng/transclude": "^0.1.87",
+    "@thi.ng/transclude": "^0.1.89",
     "@types/debug": "latest",
     "@types/yargs": "latest",
     "@typescript-eslint/eslint-plugin": "latest",

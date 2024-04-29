@@ -8,7 +8,7 @@
 **Signature:**
 
 ```typescript
-cspObj: ({ directives, patterns }: Config) => Promise<{}>
+cspObj: ({ directives, patterns }: Options) => Promise<{}>
 ```
 
 ## Parameters
@@ -36,7 +36,7 @@ Description
 
 </td><td>
 
-[Config](./content-security-policy.config.md)
+[Options](./content-security-policy.options.md)
 
 
 </td><td>

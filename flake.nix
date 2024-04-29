@@ -13,7 +13,7 @@
   } @ inputs: let
     overlays = [
       (final: prev: {
-        nodejs = prev.nodejs_21;
+        nodejs = prev.nodejs_22;
       })
     ];
     supportedSystems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];

@@ -25,10 +25,6 @@ Also, you should:
 
 This package validates your Content-Security-Policy [directives](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives) and computes a cryptographic hash (SHA-256, SHA-384 or SHA-512) for each snippet of CSS/JS that you inline in your HTML file.
 
-> 🛈 **Note:**
->
-> If your website is built with [Eleventy](https://www.11ty.dev/), have a look at [@jackdbd/eleventy-plugin-content-security-policy](https://www.npmjs.com/package/@jackdbd/eleventy-plugin-content-security-policy), which also takes care of writing the Content-Security-Policy header in a `_headers` file (useful if you website/app is hosted on [Netlify](https://docs.netlify.com/routing/headers/) or [Cloudflare Pages](https://developers.cloudflare.com/pages/platform/headers/)).
-
 ## Installation
 
 ```sh
@@ -37,52 +33,45 @@ npm install @jackdbd/content-security-policy
 
 ## Usage
 
-Write something like this in your build script:
+Let's suppose you have an Eleventy site that has the following characteristics:
+
+- fonts self-hosted on your origin
+- stylesheets self-hosted on your origin. No CSS inlined in the `<head>`
+- a few event handlers inlined in the HTML
+- a few images hosted on a CDN
+
+If your Eleventy site was generated in the `_site` folder, you could generate a `Content-Security-Policy` header with this code:
 
 ```js
 import path from 'node:path'
-// pick the format you prefer: JS object literal, header (single string), directives (N strings)
-import {
-  cspObj,
-  cspHeader,
-  cspDirectives
-} from '@jackdbd/content-security-policy'
+import { cspHeader } from '@jackdbd/content-security-policy'
 
-// The Content-Security-Policy header is made of directives.
-// If you don't know where to start, use one of the following policies:
+const directives = {
+  'base-uri': ['self'],
+  'default-src': ['none'],
+  'font-src': ['self'],
+  'img-src': ['self', 'cdn.example.com'],
+  'script-src-attr': ['self', 'unsafe-hashes', 'sha256'],
+  'style-src-elem': ['self']
+}
+
+const patterns = [path.join('_site', '**/*.html')]
+
+const header = await cspHeader({ directives, patterns })
+```
+
+The Content-Security-Policy header is made of directives. If you don't know where to start, use one of the following policies:
+
+```js
 import {
   starter_policy,
   recommended_policy
 } from '@jackdbd/content-security-policy/policies'
 
 const directives = recommended_policy
-
-const patterns = [
-  // e.g. for a Eleventy website
-  path.join('_site', '**/*.html')
-]
-
-const obj = await cspObj({ directives, patterns })
-console.log(`Content-Security-Policy (as JS object literal)`)
-console.log(obj)
-
-const header = await cspHeader({ directives, patterns })
-console.log(`Content-Security-Policy (as header)`)
-console.log(header)
-
-const strings = await cspDirectives({ directives, patterns })
-console.log(`Content-Security-Policy (as strings)`)
-console.log(strings)
 ```
 
-## Configuration
-
-The `cspObj`, `cspHeader` and `cspDirectives` functions require an object that contains `directives` and `patterns`.
-
-| Parameter | Explanation |
-| --- | --- |
-| `directives` | [Directives](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives) for the Content-Security-Policy (or Content-Security-Policy-Report-Only) header. |
-| `patterns` | glob patterns for your `.html` files. |
+{{configuration}}
 
 {{pkg.docs}}
 

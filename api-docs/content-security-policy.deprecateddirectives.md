@@ -8,8 +8,8 @@
 
 ```typescript
 export type DeprecatedDirectives = {
-    [key in DeprecatedDirectiveKey]: DeprecatedDirectiveValue;
+    [key in DeprecatedDirective]: DeprecatedDirectiveValue;
 };
 ```
-**References:** [DeprecatedDirectiveKey](./content-security-policy.deprecateddirectivekey.md)<!-- -->, [DeprecatedDirectiveValue](./content-security-policy.deprecateddirectivevalue.md)
+**References:** [DeprecatedDirective](./content-security-policy.deprecateddirective.md)<!-- -->, [DeprecatedDirectiveValue](./content-security-policy.deprecateddirectivevalue.md)
 

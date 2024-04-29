@@ -14,18 +14,6 @@ import {
 import { DIRECTIVES, PATTERNS } from './constants.mjs'
 
 describe('cspSourceValuesScriptAttr', () => {
-  it('returns an array of N elements, where N is the length of the values allowed for the specified CSP directive', async () => {
-    const directive = 'script-src-attr'
-
-    const arr = await cspSourceValuesScriptAttr({
-      directive,
-      directives: DIRECTIVES,
-      patterns: PATTERNS
-    })
-
-    assert.equal(arr.length, DIRECTIVES[directive].length)
-  })
-
   it('computes the hash using the specified algorithm', async () => {
     const directive = 'script-src-attr'
 

@@ -1,7 +1,11 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import defDebug from 'debug'
-import { markdownTableFromZodSchema } from '@jackdbd/zod-to-doc'
+import { z } from 'zod'
+import {
+  markdownTableFromZodSchema,
+  stringsFromZodAnyType
+} from '@jackdbd/zod-to-doc'
 import {
   image,
   licenseLink,
@@ -11,7 +15,12 @@ import {
   transcludeFile
 } from '@thi.ng/transclude'
 import { DEBUG_PREFIX } from '../src/constants.js'
-import { directives } from '../lib/schemas.js'
+import {
+  deprecated_directive,
+  experimental_directive,
+  supported_directive
+} from '../lib/schemas/directives.js'
+import { directives, options } from '../lib/schemas/options.js'
 
 const debug = defDebug(`script:readme`)
 
@@ -35,12 +44,57 @@ interface Config {
   project_started_in_year: number
 }
 
+const listDirectives = (what: string, schema: z.Schema) => {
+  const arr = stringsFromZodAnyType(schema)
+  const links = arr.map((s) => {
+    const directive = (s as any).replaceAll('`', '').replaceAll('"', '')
+    return link(
+      directive,
+      `https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/${directive}`
+    )
+  })
+
+  const lines: string[] = []
+  lines.push('\n\n')
+  lines.push(`### ${what} CSP directives`)
+  lines.push('\n\n')
+  lines.push(links.join(', '))
+  return lines.join('')
+}
+
 const main = async ({ current_year, project_started_in_year }: Config) => {
   const pkg_root = resolve('.')
   const pkg = JSON.parse(readFileSync(join(pkg_root, 'package.json'), 'utf-8'))
   debug(`generating README.md for ${pkg.name}`)
   const [npm_scope, unscoped_pkg_name] = pkg.name.split('/')
   const github_username = npm_scope.replace('@', '') as string
+
+  const errors: Error[] = []
+  const configurations: string[] = [`## Configuration`, '\n\n']
+
+  const res_a = markdownTableFromZodSchema(options)
+  if (res_a.error) {
+    errors.push(res_a.error)
+  } else {
+    configurations.push('\n\n')
+    configurations.push(`### Options`)
+    configurations.push('\n\n')
+    configurations.push(res_a.value)
+  }
+
+  // const res_b = markdownTableFromZodSchema(directives)
+  // if (res_b.error) {
+  //   errors.push(res_b.error)
+  // } else {
+  //   configurations.push('\n\n')
+  //   configurations.push(`### CSP directives`)
+  //   configurations.push('\n\n')
+  //   configurations.push(res_b.value)
+  // }
+
+  configurations.push(listDirectives('Supported', supported_directive))
+  configurations.push(listDirectives('Deprecated', deprecated_directive))
+  configurations.push(listDirectives('Experimental', experimental_directive))
 
   const transcluded = transcludeFile(join(pkg_root, 'tpl.readme.md'), {
     user: pkg.author,
@@ -113,6 +167,8 @@ const main = async ({ current_year, project_started_in_year }: Config) => {
           conventional_commits
         ].join('\n')
       },
+
+      configuration: configurations.join(''),
 
       'engines.node': () => {
         const lines = [

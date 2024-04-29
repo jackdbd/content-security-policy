@@ -1,5 +1,5 @@
 import { deprecatedDirectives } from './deprecated-directives.js'
-import { type DeprecatedDirectiveKey } from './schemas.js'
+import type { DeprecatedDirective } from './schemas/directives.js'
 
 /**
  * @public
@@ -25,7 +25,7 @@ export const validationErrorOrWarnings = ({
   const warnings: string[] = []
 
   if (detail.path.length === 2) {
-    const directive = detail.path[1] as DeprecatedDirectiveKey
+    const directive = detail.path[1] as DeprecatedDirective
 
     const deprecatedDirective = deprecatedDirectives[directive]
 
