@@ -1,15 +1,15 @@
-import { DeprecatedDirectiveKey } from './schemas.js'
+import { DeprecatedDirective } from './schemas/directives.js'
 export interface DeprecatedDirectiveValue {
   hrefs: string[]
   whatToDoInstead: string
 }
 
 export type DeprecatedDirectives = {
-  [key in DeprecatedDirectiveKey]: DeprecatedDirectiveValue
+  [key in DeprecatedDirective]: DeprecatedDirectiveValue
 }
 
 /**
- * @see [Deprected directives - MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#deprecated_directives)
+ * @see [Deprecated directives - MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#deprecated_directives)
  */
 export const deprecatedDirectives: DeprecatedDirectives = {
   'block-all-mixed-content': {

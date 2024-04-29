@@ -7,7 +7,7 @@ import {
   inlineEventHandlerContents,
   inlineStyleContents
 } from './html-parsers.js'
-import type { SrcKey } from './schemas.js'
+import type { SrcKey } from './schemas/sources.js'
 import { contentHash, hashAlgorithmFromCspSourceValues } from './utils.js'
 
 const debug = defDebug(`${DEBUG_PREFIX}:hash`)

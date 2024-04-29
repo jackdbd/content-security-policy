@@ -3,12 +3,7 @@
  *
  * @packageDocumentation
  */
-export {
-  cspDirectives,
-  cspHeader,
-  cspJSON,
-  type Config
-} from './csp-directives.js'
+export { cspDirectives } from './csp-directives.js'
 
 export {
   type DeprecatedDirectiveValue,
@@ -20,11 +15,12 @@ export {
   type Config as ValidationErrorOrWarningsConfig
 } from './errors.js'
 
+export { cspHeader, cspObj } from './outputs.js'
+
 export { starter_policy, recommended_policy } from './policies.js'
 
-export {
-  deprecated_directive_key,
-  type DeprecatedDirectiveKey,
-  directives,
-  type Directives
-} from './schemas.js'
+export { directives, options } from './schemas/options.js'
+export type { Directives, Options } from './schemas/options.js'
+
+export { deprecated_directive } from './schemas/directives.js'
+export type { DeprecatedDirective } from './schemas/directives.js'

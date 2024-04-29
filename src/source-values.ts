@@ -9,7 +9,8 @@ import {
   hashesStyleSrcAttr,
   hashesStyleSrcElem
 } from './hash.js'
-import type { Directives, SrcKey } from './schemas.js'
+import type { Directives } from './schemas/options.js'
+import type { SrcKey } from './schemas/sources.js'
 
 const debug = defDebug(`${DEBUG_PREFIX}:source-values`)
 

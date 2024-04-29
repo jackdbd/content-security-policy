@@ -48,3 +48,17 @@ export const DIRECTIVES = {
 
   'worker-src': ['self']
 }
+
+export const DEPRECATED_DIRECTIVES = {
+  'prefetch-src': [
+    'https://foo.com/',
+    'https://bar.com/'
+  ]
+}
+
+export const EXPERIMENTAL_DIRECTIVES = {
+  'fenced-frame-src': [
+    'https://foo.com/',
+    'https://bar.com/'
+  ]
+}

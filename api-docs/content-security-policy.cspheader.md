@@ -2,11 +2,49 @@
 
 [Home](./index.md) &gt; [@jackdbd/content-security-policy](./content-security-policy.md) &gt; [cspHeader](./content-security-policy.cspheader.md)
 
-## cspHeader variable
+## cspHeader() function
 
 
 **Signature:**
 
 ```typescript
-cspHeader: ({ directives, patterns }: Config) => Promise<string>
+cspHeader: ({ directives, patterns }: Options) => Promise<string>
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ directives, patterns }
+
+
+</td><td>
+
+[Options](./content-security-policy.options.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+Promise&lt;string&gt;
+

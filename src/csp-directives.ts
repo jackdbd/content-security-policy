@@ -1,6 +1,6 @@
 import defDebug from 'debug'
 import { DEBUG_PREFIX } from './constants.js'
-import type { Directives } from './schemas.js'
+import type { Options } from './schemas/options.js'
 import {
   cspSourceValuesStyleAttr,
   cspSourceValuesScriptElem,
@@ -14,15 +14,7 @@ const debug = defDebug(`${DEBUG_PREFIX}:csp-directives`)
 /**
  * @public
  */
-export interface Config {
-  directives: Directives
-  patterns: string[]
-}
-
-/**
- * @public
- */
-export const cspDirectives = async ({ directives, patterns }: Config) => {
+export const cspDirectives = async ({ directives, patterns }: Options) => {
   const m = { ...directives }
 
   const [
@@ -100,31 +92,4 @@ export const cspDirectives = async ({ directives, patterns }: Config) => {
   debug('CSP directives that represent the policy %O', arr)
 
   return arr
-}
-
-/**
- * @public
- */
-export const cspHeader = async ({ directives, patterns }: Config) => {
-  const arr = await cspDirectives({
-    directives,
-    patterns
-  })
-
-  return arr.join('; ')
-}
-
-/**
- * @public
- */
-export const cspJSON = async ({ directives, patterns }: Config) => {
-  const arr = await cspDirectives({
-    directives,
-    patterns
-  })
-
-  return arr.reduce((acc, cv) => {
-    const [k, ...rest] = cv.split(' ')
-    return { ...acc, [k]: rest }
-  }, {})
 }

@@ -1,5 +1,5 @@
 import { deprecatedDirectives } from './deprecated-directives.js'
-import { type DeprecatedDirectiveKey } from './schemas.js'
+import type { DeprecatedDirective } from './schemas/directives.js'
 
 /**
  * @public
@@ -25,7 +25,7 @@ export const validationErrorOrWarnings = ({
   const warnings: string[] = []
 
   if (detail.path.length === 2) {
-    const directive = detail.path[1] as DeprecatedDirectiveKey
+    const directive = detail.path[1] as DeprecatedDirective
 
     const deprecatedDirective = deprecatedDirectives[directive]
 
@@ -55,7 +55,7 @@ export const validationErrorOrWarnings = ({
       }
     }
   } else {
-    // This is an error about something else in the plugin configuration.
+    // This is an error about something else.
     // TODO: Zod errors do not have a `context` property. This code was written for Joi.
     if (detail.context && detail.context.message) {
       return {

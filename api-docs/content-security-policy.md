@@ -6,32 +6,207 @@
 
 Entry point for the documentation of content-security-policy.
 
+## Functions
+
+<table><thead><tr><th>
+
+Function
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[cspDirectives({ directives, patterns })](./content-security-policy.cspdirectives.md)
+
+
+</td><td>
+
+
+
+</td></tr>
+<tr><td>
+
+[cspHeader({ directives, patterns })](./content-security-policy.cspheader.md)
+
+
+</td><td>
+
+
+
+</td></tr>
+<tr><td>
+
+[cspObj({ directives, patterns })](./content-security-policy.cspobj.md)
+
+
+</td><td>
+
+
+
+</td></tr>
+<tr><td>
+
+[validationErrorOrWarnings({ allowDeprecatedDirectives, error })](./content-security-policy.validationerrororwarnings.md)
+
+
+</td><td>
+
+
+
+</td></tr>
+</tbody></table>
+
 ## Interfaces
 
-|  Interface | Description |
-|  --- | --- |
-|  [Config](./content-security-policy.config.md) |  |
-|  [DeprecatedDirectiveValue](./content-security-policy.deprecateddirectivevalue.md) |  |
-|  [ValidationErrorOrWarningsConfig](./content-security-policy.validationerrororwarningsconfig.md) |  |
+<table><thead><tr><th>
+
+Interface
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[DeprecatedDirectiveValue](./content-security-policy.deprecateddirectivevalue.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[ValidationErrorOrWarningsConfig](./content-security-policy.validationerrororwarningsconfig.md)
+
+
+</td><td>
+
+
+
+</td></tr>
+</tbody></table>
 
 ## Variables
 
-|  Variable | Description |
-|  --- | --- |
-|  [cspDirectives](./content-security-policy.cspdirectives.md) |  |
-|  [cspHeader](./content-security-policy.cspheader.md) |  |
-|  [cspJSON](./content-security-policy.cspjson.md) |  |
-|  [deprecated\_directive\_key](./content-security-policy.deprecated_directive_key.md) |  |
-|  [directives](./content-security-policy.directives.md) |  |
-|  [recommended\_policy](./content-security-policy.recommended_policy.md) | Recommended policy for most sites. |
-|  [starter\_policy](./content-security-policy.starter_policy.md) | Starter policy. |
-|  [validationErrorOrWarnings](./content-security-policy.validationerrororwarnings.md) |  |
+<table><thead><tr><th>
+
+Variable
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[deprecated\_directive](./content-security-policy.deprecated_directive.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[directives](./content-security-policy.directives.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[options](./content-security-policy.options.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[recommended\_policy](./content-security-policy.recommended_policy.md)
+
+
+</td><td>
+
+Recommended policy for most sites.
+
+
+</td></tr>
+<tr><td>
+
+[starter\_policy](./content-security-policy.starter_policy.md)
+
+
+</td><td>
+
+Starter policy.
+
+
+</td></tr>
+</tbody></table>
 
 ## Type Aliases
 
-|  Type Alias | Description |
-|  --- | --- |
-|  [DeprecatedDirectiveKey](./content-security-policy.deprecateddirectivekey.md) |  |
-|  [DeprecatedDirectives](./content-security-policy.deprecateddirectives.md) |  |
-|  [Directives](./content-security-policy.directives.md) |  |
+<table><thead><tr><th>
 
+Type Alias
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[DeprecatedDirective](./content-security-policy.deprecateddirective.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[DeprecatedDirectives](./content-security-policy.deprecateddirectives.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[Directives](./content-security-policy.directives.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[Options](./content-security-policy.options.md)
+
+
+</td><td>
+
+
+
+</td></tr>
+</tbody></table>
