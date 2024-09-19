@@ -64,7 +64,12 @@ jobs:
       - name: 🔨 Build TypeScript files
         run: npm run build:lib
 
-      - name: 🔍 Test on Linux
+      - name: 🔍 Test
+        run: npm run test
+
+      - name: 🔍 Test CI
+        continue-on-error: true
+        # From time to time the Node.js test runner fails when generating a coverage report. No idea why.
         run: npm run test:ci
       
       - name: ⬆️ Upload test coverage to Codecov

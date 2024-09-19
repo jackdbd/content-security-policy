@@ -89,7 +89,7 @@
     "release:dry": "npx semantic-release --no-ci --debug --dry-run",
     "serve:docs": "serve docs/ -p 3333",
     "size": "pkg-size ./lib --sort-by=brotli --ignore-files {*.d.ts,*.map}",
-    "test": "DEBUG='' node --test --experimental-test-coverage",
+    "test": "node --test",
     "test:ci": "node --test --experimental-test-coverage --test-reporter=@reporters/github --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=lcov.info",
     "test:watch": "DEBUG='' node --test --watch"
   },
