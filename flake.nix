@@ -32,6 +32,11 @@
         packages = with pkgs; [
           neo-cowsay
           nodejs
+          # The `serve` npm package has some a few high vulnerabilities, so if
+          # we include it as a dev dependency in the package.json and execute
+          # the command `npm audit` (e.g. on the CI), it fails. To avoid this
+          # issue, we can declare the `serve` package here.
+          nodePackages.serve
         ];
 
         shellHook = ''

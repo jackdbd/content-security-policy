@@ -94,25 +94,25 @@
     "test:watch": "DEBUG='' node --test --watch"
   },
   "dependencies": {
-    "debug": "^4.3.4",
-    "globby": "^14.0.1",
+    "debug": "^4.3.7",
+    "globby": "^14.0.2",
     "himalaya": "^1.1.0",
-    "zod": "^3.23.4"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@jackdbd/checks": "^2.0.0",
-    "@jackdbd/zod-to-doc": "^1.1.1",
-    "@microsoft/api-documenter": "^7.24.2",
-    "@microsoft/api-extractor": "^7.43.1",
-    "@reporters/github": "^1.7.0",
+    "@jackdbd/zod-to-doc": "^1.1.2",
+    "@microsoft/api-documenter": "latest",
+    "@microsoft/api-extractor": "latest",
+    "@reporters/github": "^1.7.1",
     "@semantic-release/changelog": "latest",
     "@semantic-release/commit-analyzer": "latest",
     "@semantic-release/exec": "latest",
     "@semantic-release/git": "latest",
     "@semantic-release/release-notes-generator": "latest",
-    "@thi.ng/transclude": "^0.1.89",
+    "@thi.ng/transclude": "^0.1.105",
     "@types/debug": "latest",
     "@types/yargs": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
@@ -127,15 +127,14 @@
     "prettier": "latest",
     "pretty-error": "latest",
     "publint": "latest",
-    "semantic-release": "^23.0.8",
+    "semantic-release": "^24.1.1",
     "semantic-release-telegram": "^1.6.2",
-    "serve": "latest",
     "simple-git-hooks": "^2.11.1",
     "taze": "latest",
     "tsm": "^2.3.0",
-    "typedoc": "^0.25.13",
+    "typedoc": "^0.26.7",
     "yargs": "latest",
-    "zx": "^8.0.2"
+    "zx": "^8.1.8"
   },
   "simple-git-hooks": {
     "pre-push": "npx commitlint --config ./config/commitlint.cjs --to HEAD"
