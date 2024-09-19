@@ -1,7 +1,11 @@
 {
-  description = "A Nix-flake-based Node.js development environment";
+  description = "Write your Content-Security-Policy header in JavaScript, so you can have validation and automatic hashes";
 
   inputs = {
+    alejandra = {
+      url = "github:kamadorueda/alejandra/3.0.0";
+    };
+    # nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
     # https://github.com/NixOS/nixpkgs/branches
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
   };
@@ -25,16 +29,21 @@
   in {
     devShells = forEachSupportedSystem ({pkgs}: {
       default = pkgs.mkShell {
-        packages = with pkgs; [nodejs];
+        packages = with pkgs; [
+          neo-cowsay
+          nodejs
+        ];
 
         shellHook = ''
-          echo "Nix dev shell"
+          cowthink "Welcome to this nix dev shell!" --bold -f tux --rainbow
+          echo "Versions:"
           echo "- Node.js $(node --version)"
           echo "- npm $(npm --version)"
-        '';
 
+          # export FOO=bar;
+        '';
         DEBUG = "csp:*,-csp:utils";
-        NODE_ENV = "development";
+        # NODE_ENV = "development";
       };
     });
   };
